@@ -62,9 +62,4 @@ public class LogFragment extends Fragment {
         listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
 
     }
-
-    @Override
-    public Context getContext() {
-        return super.getContext();
-    }
 }
