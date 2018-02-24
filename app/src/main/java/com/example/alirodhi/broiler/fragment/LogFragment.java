@@ -1,6 +1,7 @@
 package com.example.alirodhi.broiler.fragment;
 
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -60,5 +61,10 @@ public class LogFragment extends Fragment {
         listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
         listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
 
+    }
+
+    @Override
+    public Context getContext() {
+        return super.getContext();
     }
 }
