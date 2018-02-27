@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "236155892534",
+    "firebase_url": "https://tugasakhir-77acf.firebaseio.com",
+    "project_id": "tugasakhir-77acf",
+    "storage_bucket": "tugasakhir-77acf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236155892534:android:5d49b3df3794bec4",
+        "android_client_info": {
+          "package_name": "com.example.alirodhi.broiler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236155892534-rnr3m2fcp09jlu63p8glqufperahd38c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alirodhi.broiler",
+            "certificate_hash": "16ea3fd45c5182d99696ba5191c411d787604625"
+          }
+        },
+        {
+          "client_id": "236155892534-tu675eh2e7fvtdoojlctq8tmbkg3vlg4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHYH98kvaOsgg8Jhx6Y22bzndbdmyApBM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236155892534-tu675eh2e7fvtdoojlctq8tmbkg3vlg4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
