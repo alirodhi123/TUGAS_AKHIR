@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tab>
+    <tab
+        id = "@+id/tab_home"
+        icon = "@drawable/ic_home"
+        activeColor = "@color/colorPrimary"
+        title = "Home" />
+
+    <tab
+        id = "@+id/tab_remote"
+        icon = "@drawable/ic_remote"
+        activeColor = "@color/colorPrimary"
+        title = "Remote" />
+
+    <tab
+        id = "@+id/tab_log"
+        icon = "@drawable/ic_history"
+        activeColor = "@color/colorPrimary"
+        title = "History" />
+
+</Tab>

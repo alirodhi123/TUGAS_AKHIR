@@ -4,6 +4,7 @@ ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-22:12
 INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-22:12
 INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-22:12
+MERGED from [com.roughike:bottom-bar:2.3.1] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\bottom-bar-2.3.1.aar\7376c50d009468f2c75f0399db8514b9\AndroidManifest.xml:2:1-12:12
 MERGED from [com.android.support:design:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\7ec707aac6b53f4038ec430586c474d4\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\7cdfa0f42f7896647ae3811fed9b5230\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:cardview-v7:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.0.0.aar\b2c0a4f0ec539dfd04593c821893cf74\AndroidManifest.xml:17:1-28:12
@@ -96,6 +97,8 @@ uses-sdk
 INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
+MERGED from [com.roughike:bottom-bar:2.3.1] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\bottom-bar-2.3.1.aar\7376c50d009468f2c75f0399db8514b9\AndroidManifest.xml:8:5-10:41
+MERGED from [com.roughike:bottom-bar:2.3.1] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\bottom-bar-2.3.1.aar\7376c50d009468f2c75f0399db8514b9\AndroidManifest.xml:8:5-10:41
 MERGED from [com.android.support:design:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\7ec707aac6b53f4038ec430586c474d4\AndroidManifest.xml:21:5-23:62
 MERGED from [com.android.support:design:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\7ec707aac6b53f4038ec430586c474d4\AndroidManifest.xml:21:5-23:62
 MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\7cdfa0f42f7896647ae3811fed9b5230\AndroidManifest.xml:21:5-23:78
