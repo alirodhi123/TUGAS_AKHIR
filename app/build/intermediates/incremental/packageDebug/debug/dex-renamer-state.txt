@@ -1,4 +1,19 @@
-#Sat Feb 24 21:53:20 ICT 2018
-base.0=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Sat May 12 01:00:19 ICT 2018
+path.1=classes.dex
 path.0=classes.dex
+renamed.5=classes6.dex
+renamed.4=classes5.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.5=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\16
+base.4=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\17
+base.3=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+base.2=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\15
+base.1=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
+base.0=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
+path.5=classes.dex
+path.4=classes.dex
+path.3=classes.dex
+path.2=classes.dex

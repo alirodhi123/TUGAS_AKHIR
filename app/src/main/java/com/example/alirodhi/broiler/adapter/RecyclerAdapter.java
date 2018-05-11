@@ -72,7 +72,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             tv_deskripsi = (TextView)itemView.findViewById(R.id.deskripsi);
             img = (ImageView)itemView.findViewById(R.id.daftar_icon);
         }
-
     }
 }
 

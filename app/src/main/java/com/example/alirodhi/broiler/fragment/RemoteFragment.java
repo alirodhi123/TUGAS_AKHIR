@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import com.example.alirodhi.broiler.R;
 
-public class StatusFragment extends Fragment {
-    public StatusFragment() {
+public class RemoteFragment extends Fragment {
+    public RemoteFragment() {
         // Required empty public constructor
     }
 

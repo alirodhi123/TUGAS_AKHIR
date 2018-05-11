@@ -27,24 +27,24 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        mainGrid = (GridLayout)view.findViewById(R.id.mainGrid);
-        setSingleEvent(mainGrid);
+        //mainGrid = (GridLayout)view.findViewById(R.id.mainGrid);
+        //setSingleEvent(mainGrid);
 
         return view;
         //return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    private void setSingleEvent(GridLayout mainGrid) {
-        //Loop all child item for mainGrid
-        for(int i = 0; i < mainGrid.getChildCount(); i++){
-            CardView cardView = (CardView)mainGrid.getChildAt(i);
-            final int finalI = i;
-            cardView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
-                 Toast.makeText(view.getContext(), "Clicked at index : " + finalI, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
+//    private void setSingleEvent(GridLayout mainGrid) {
+//        //Loop all child item for mainGrid
+//        for(int i = 0; i < mainGrid.getChildCount(); i++){
+//            CardView cardView = (CardView)mainGrid.getChildAt(i);
+//            final int finalI = i;
+//            cardView.setOnClickListener(new View.OnClickListener(){
+//                @Override
+//                public void onClick(View view){
+//                 Toast.makeText(view.getContext(), "Clicked at index : " + finalI, Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
+//    }
 }

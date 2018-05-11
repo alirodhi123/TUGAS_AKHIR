@@ -439,21 +439,6 @@
             ]
         },
         {
-            "outputFile": "D:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\res\\merged\\debug\\values-lt_values-lt.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\alirodhi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0.aar\\7cdfa0f42f7896647ae3811fed9b5230\\res\\values-lt\\values-lt.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,171,279,402,503,616,703,812,933,1015,1096,1181,1290,1399,1499,1609,1713,1826,1956,2057,2140",
-                        "endColumns": "115,107,122,100,112,86,108,120,81,80,84,108,108,99,109,103,112,129,100,82,100",
-                        "endOffsets": "166,274,397,498,611,698,807,928,1010,1091,1176,1285,1394,1494,1604,1708,1821,1951,2052,2135,2236"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\res\\merged\\debug\\values-ar_values-ar.arsc.flat",
             "map": [
                 {
@@ -464,6 +449,21 @@
                         "startOffsets": "55,172,280,403,507,616,698,799,913,992,1071,1150,1255,1356,1452,1560,1663,1766,1885,1982,2063",
                         "endColumns": "116,107,122,103,108,81,100,113,78,78,78,104,100,95,107,102,102,118,96,80,100",
                         "endOffsets": "167,275,398,502,611,693,794,908,987,1066,1145,1250,1351,1447,1555,1658,1761,1880,1977,2058,2159"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\res\\merged\\debug\\values-lt_values-lt.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\alirodhi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0.aar\\7cdfa0f42f7896647ae3811fed9b5230\\res\\values-lt\\values-lt.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,171,279,402,503,616,703,812,933,1015,1096,1181,1290,1399,1499,1609,1713,1826,1956,2057,2140",
+                        "endColumns": "115,107,122,100,112,86,108,120,81,80,84,108,108,99,109,103,112,129,100,82,100",
+                        "endOffsets": "166,274,397,498,611,698,807,928,1010,1091,1176,1285,1394,1494,1604,1708,1821,1951,2052,2135,2236"
                     }
                 }
             ]
@@ -802,21 +802,6 @@
             ]
         },
         {
-            "outputFile": "D:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\res\\merged\\debug\\values-xlarge-v4_values-xlarge-v4.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\alirodhi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0.aar\\7cdfa0f42f7896647ae3811fed9b5230\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,126,197,267,337,405",
-                        "endColumns": "70,70,69,69,67,67",
-                        "endOffsets": "121,192,262,332,400,468"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\res\\merged\\debug\\values-mk_values-mk.arsc.flat",
             "map": [
                 {
@@ -827,6 +812,21 @@
                         "startOffsets": "55,163,286,390,498,584,689,808,891,973,1060,1166,1273,1374,1481,1592,1696,1794,1878",
                         "endColumns": "107,122,103,107,85,104,118,82,81,86,105,106,100,106,110,103,97,83,100",
                         "endOffsets": "158,281,385,493,579,684,803,886,968,1055,1161,1268,1369,1476,1587,1691,1789,1873,1974"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\res\\merged\\debug\\values-xlarge-v4_values-xlarge-v4.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\alirodhi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0.aar\\7cdfa0f42f7896647ae3811fed9b5230\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,126,197,267,337,405",
+                        "endColumns": "70,70,69,69,67,67",
+                        "endOffsets": "121,192,262,332,400,468"
                     }
                 }
             ]
