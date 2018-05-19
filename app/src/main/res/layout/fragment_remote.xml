@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Relay Status"
+                android:textSize="30sp"
+                android:textColor="#ffff"
+                android:layout_margin="33dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:srcCompat="@drawable/ic_fan_on" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fan"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:textColor="#434343"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!--<Button-->
+                    <!--android:id="@+id/btnFanOn"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_margin="80dp"-->
+                    <!--android:background="@drawable/btn_circle"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:text="ON"/>-->
+                <View android:layout_width="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="70dp"
+                    android:background="#ecebeb"/>
+
+                <ToggleButton
+                    android:id="@+id/toggleBtnFan"
+                    android:layout_width="67dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/slc_button"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="350dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="1.5dp"
+            android:background="#ecebeb"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:srcCompat="@drawable/ic_lamp_on" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lamp"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:textColor="#434343"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!--<Button-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:background="@drawable/btn_circle"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="80dp"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:text="ON"/>-->
+
+                <View android:layout_width="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="70dp"
+                    android:background="#ecebeb"/>
+
+                <ToggleButton
+                    android:id="@+id/toggleBtnLamp"
+                    android:layout_width="67dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/slc_button"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="350dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="1.5dp"
+            android:background="#ecebeb"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:srcCompat="@drawable/ic_spray_on" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spray"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:textColor="#434343"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!--<Button-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:background="@drawable/btn_circle"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="80dp"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:text="ON"/>-->
+
+                <View android:layout_width="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="70dp"
+                    android:background="#ecebeb"/>
+
+                <ToggleButton
+                    android:id="@+id/toggleBtnFanOut"
+                    android:layout_width="67dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/slc_button"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="350dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="1.5dp"
+            android:background="#ecebeb"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="25dp"
+                    app:srcCompat="@drawable/ic_fan_out" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exhaust Fan"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#434343"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!--<Button-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="@drawable/btn_circle"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="80dp"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:text="ON"/>-->
+
+                <View android:layout_width="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="70dp"
+                    android:background="#ecebeb"/>
+
+                <ToggleButton
+                    android:id="@+id/toggleBtnSpray"
+                    android:layout_width="67dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/slc_button"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
