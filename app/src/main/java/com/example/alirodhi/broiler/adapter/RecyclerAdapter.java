@@ -2,15 +2,13 @@ package com.example.alirodhi.broiler.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.alirodhi.broiler.Log;
+import com.example.alirodhi.broiler.LogActivity;
 import com.example.alirodhi.broiler.R;
 
 import java.util.List;
@@ -22,9 +20,9 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>{
 
     Context context;
-    List<Log> mData;
+    List<LogActivity> mData;
 
-    public RecyclerAdapter(Context context, List<Log> mData) {
+    public RecyclerAdapter(Context context, List<LogActivity> mData) {
         this.context = context;
         this.mData = mData;
     }

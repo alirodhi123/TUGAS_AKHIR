@@ -1,7 +1,6 @@
 package com.example.alirodhi.broiler.fragment;
 
 
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.alirodhi.broiler.Log;
+import com.example.alirodhi.broiler.LogActivity;
 import com.example.alirodhi.broiler.R;
 import com.example.alirodhi.broiler.adapter.RecyclerAdapter;
 
@@ -22,7 +21,7 @@ public class LogFragment extends Fragment {
 
     //Deklarasi
     private RecyclerView mRecyclerView;
-    private List<Log>listLog;
+    private List<LogActivity> listLogActivity;
     View view;
 
     public LogFragment() {
@@ -36,7 +35,7 @@ public class LogFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_log, container, false);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
-        RecyclerAdapter adapter = new RecyclerAdapter(getContext(), listLog);
+        RecyclerAdapter adapter = new RecyclerAdapter(getContext(), listLogActivity);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(adapter);
 
@@ -47,19 +46,19 @@ public class LogFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        listLog = new ArrayList<>();
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_off));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_on));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_off));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_on));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_off));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_on));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_off));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_on));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
-        listLog.add(new Log("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
+        listLogActivity = new ArrayList<>();
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_off));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_on));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_off));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_on));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_off));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_on));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_off));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_on));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
+        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
 
     }
 }

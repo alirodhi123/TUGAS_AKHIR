@@ -43,6 +43,70 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:srcCompat="@drawable/ic_lamp_on" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lamp"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:textColor="#434343"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!--<Button-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="@drawable/btn_circle"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="80dp"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:text="ON"/>-->
+
+                <View android:layout_width="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="70dp"
+                    android:background="#ecebeb"/>
+
+                <ToggleButton
+                    android:id="@+id/toggleBtnLamp"
+                    android:layout_width="67dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/slc_button"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="350dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="1.5dp"
+            android:background="#ecebeb"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -118,70 +182,6 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    app:srcCompat="@drawable/ic_lamp_on" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lamp"
-                    android:textSize="15sp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:textColor="#434343"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <!--<Button-->
-                    <!--android:layout_width="50dp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:background="@drawable/btn_circle"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_margin="80dp"-->
-                    <!--android:textColor="@color/colorPrimary"-->
-                    <!--android:text="ON"/>-->
-
-                <View android:layout_width="1.5dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="70dp"
-                    android:background="#ecebeb"/>
-
-                <ToggleButton
-                    android:id="@+id/toggleBtnLamp"
-                    android:layout_width="67dp"
-                    android:layout_height="65dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/slc_button"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <View android:layout_width="350dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="1.5dp"
-            android:background="#ecebeb"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
                     app:srcCompat="@drawable/ic_spray_on" />
 
                 <TextView
@@ -216,7 +216,7 @@
                     android:background="#ecebeb"/>
 
                 <ToggleButton
-                    android:id="@+id/toggleBtnFanOut"
+                    android:id="@+id/toggleBtnSpray"
                     android:layout_width="67dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center"
@@ -280,7 +280,7 @@
                     android:background="#ecebeb"/>
 
                 <ToggleButton
-                    android:id="@+id/toggleBtnSpray"
+                    android:id="@+id/toggleBtnExhaustFan"
                     android:layout_width="67dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center"

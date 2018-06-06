@@ -16,9 +16,13 @@ import com.example.alirodhi.broiler.adapter.ViewPageAdapter;
 import com.example.alirodhi.broiler.fragment.HomeFragment;
 import com.example.alirodhi.broiler.fragment.LogFragment;
 import com.example.alirodhi.broiler.fragment.RemoteFragment;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
+
+import java.net.URISyntaxException;
 //import com.example.alirodhi.broiler.tab.MyAdapter;
 //import com.example.alirodhi.broiler.tab.SlidingTabLayout;
 
@@ -37,9 +41,21 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout.Tab action;
     private TabLayout.Tab log;
 
+    private Socket sc;
+    {
+        try{
+            sc = IO.socket("http://192.168.43.140:3038/");
+        }catch (URISyntaxException e){
+            throw new RuntimeException(e);
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Connect to socket server
+        sc.connect();
 
         showFrament();
 
