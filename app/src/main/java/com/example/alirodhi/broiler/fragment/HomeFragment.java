@@ -1,26 +1,27 @@
 package com.example.alirodhi.broiler.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.alirodhi.broiler.Models.LogModel;
+import com.example.alirodhi.broiler.Models.SensorModel;
 import com.example.alirodhi.broiler.R;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
+
+    public static final String URL = "https://ali.jagopesan.com/";
+
+    private List<SensorModel> sensorModels = new ArrayList<>();
 
     public HomeFragment() {}
 
@@ -36,6 +37,8 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+
 
 
 

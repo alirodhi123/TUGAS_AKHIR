@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.alirodhi.broiler.LogActivity;
+import com.example.alirodhi.broiler.Models.LogModel;
 import com.example.alirodhi.broiler.R;
 
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>{
 
     Context context;
-    List<LogActivity> mData;
+    List<LogModel> mData;
 
-    public RecyclerAdapter(Context context, List<LogActivity> mData) {
+    public RecyclerAdapter(Context context, List<LogModel> mData) {
         this.context = context;
         this.mData = mData;
     }
@@ -40,13 +40,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-
-        holder.tv_judul.setText(mData.get(position).getJudul());
-        holder.tv_jam.setText(mData.get(position).getJam());
-        holder.tv_deskripsi.setText(mData.get(position).getDeskripsi());
-        holder.img.setImageResource(mData.get(position).getImage());
-
-
+        LogModel logModel = mData.get(position);
+        holder.tv_judul.setText(mData.get(position).getTitle());
+        holder.tv_jam.setText(mData.get(position).getTanggal());
+        holder.tv_deskripsi.setText(mData.get(position).getKeterangan());
+       // holder.img.setImageResource(mData.get(position).getImage());
     }
 
     @Override

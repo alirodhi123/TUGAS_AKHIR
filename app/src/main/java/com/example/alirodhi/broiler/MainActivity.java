@@ -8,11 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.alirodhi.broiler.adapter.ViewPageAdapter;
 import com.example.alirodhi.broiler.fragment.HomeFragment;
 import com.example.alirodhi.broiler.fragment.LogFragment;
 import com.example.alirodhi.broiler.fragment.RemoteFragment;
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Socket sc;
     {
         try{
-            sc = IO.socket("http://192.168.43.140:3038/");
+            sc = IO.socket("https://ali.jagopesan.com/");
         }catch (URISyntaxException e){
             throw new RuntimeException(e);
         }

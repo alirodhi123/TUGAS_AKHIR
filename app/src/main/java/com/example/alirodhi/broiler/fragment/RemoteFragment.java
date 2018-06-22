@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.alirodhi.broiler.LogActivity;
 import com.example.alirodhi.broiler.R;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -33,7 +31,7 @@ public class RemoteFragment extends Fragment {
     private Socket sc;
     {
         try{
-            sc = IO.socket("http://192.168.43.140:3038/");
+            sc = IO.socket("https://ali.jagopesan.com/");
         }catch (URISyntaxException e){
             throw new RuntimeException(e);
         }

@@ -1,7 +1,6 @@
 package com.example.alirodhi.broiler.fragment;
 
 
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,18 +9,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.alirodhi.broiler.LogActivity;
+import com.example.alirodhi.broiler.API.ServiceAPI;
+import com.example.alirodhi.broiler.Models.LogModel;
+import com.example.alirodhi.broiler.Models.ResponseModel;
 import com.example.alirodhi.broiler.R;
 import com.example.alirodhi.broiler.adapter.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class LogFragment extends Fragment {
+
+    public static final String URL = "https://ali.jagopesan.com/";
 
     //Deklarasi
     private RecyclerView mRecyclerView;
-    private List<LogActivity> listLogActivity;
+    private RecyclerAdapter recyclerAdapter;
+    //private List<LogActivity> listLogActivity;
+    private List<LogModel> logModels = new ArrayList<>();
     View view;
 
     public LogFragment() {
@@ -35,30 +46,40 @@ public class LogFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_log, container, false);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
-        RecyclerAdapter adapter = new RecyclerAdapter(getContext(), listLogActivity);
+        RecyclerAdapter adapter = new RecyclerAdapter(getContext(), logModels);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(adapter);
-
+//        recyclerAdapter = new RecyclerAdapter(getContext(), logModels);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        mRecyclerView.setLayoutManager(layoutManager);
+//        mRecyclerView.setAdapter(recyclerAdapter);
+        getLogLamp();
         return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private void getLogLamp(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        listLogActivity = new ArrayList<>();
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_off));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_on));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_off));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_on));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_off));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_lamp_on));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_off));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_spray_on));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_off));
-        listLogActivity.add(new LogActivity("Kipas On", "20:00", "Kipas menyala karena suhu terlalu panas", R.drawable.ic_fan_on));
+        ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
+        Call<ResponseModel> call = serviceAPI.getLogLamp();
+        call.enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                String value = response.body().getStatus();
+                if (value.equals("success")){
+                    logModels = response.body().getData();
+                    recyclerAdapter = new RecyclerAdapter(getActivity(), logModels);
+                    mRecyclerView.setAdapter(recyclerAdapter);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+            }
+        });
     }
 }
