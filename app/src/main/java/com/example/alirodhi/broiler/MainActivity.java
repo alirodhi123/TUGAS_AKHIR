@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.example.alirodhi.broiler.fragment.HomeFragment;
 import com.example.alirodhi.broiler.fragment.LogFragment;
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private Socket sc;
     {
         try{
-            sc = IO.socket("https://ali.jagopesan.com/");
+            //sc = IO.socket("https://ali.jagopesan.com/");
+            sc = IO.socket("http://192.168.43.140:3038/");
         }catch (URISyntaxException e){
             throw new RuntimeException(e);
         }

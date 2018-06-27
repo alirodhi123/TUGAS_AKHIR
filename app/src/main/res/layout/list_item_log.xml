@@ -10,13 +10,14 @@
     android:layout_marginRight="10dp"
     android:background="@drawable/ic_bg"
     android:foreground="?attr/selectableItemBackground">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/listLog"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -32,31 +33,52 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/judul"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Judul"
-                android:layout_margin="10dp"
-                android:textColor="#535050"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/judul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Judul"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textColor="#535050"/>
+
+
+                <TextView
+                    android:id="@+id/deskripsi"
+                    android:layout_below="@+id/garis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem Ipsum Donot sir ammet"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#535050"/>
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:gravity="end"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/jam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20:00"
-                android:layout_margin="10dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="end"
-                android:textColor="#535050"/>
 
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:gravity="end"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/jam"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="20:00"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:gravity="end"-->
+                <!--android:textColor="#535050"/>-->
+
+        <!--</LinearLayout>-->
 
         <View
             android:id="@+id/garis"
@@ -69,12 +91,14 @@
             android:layout_below="@+id/listLog"/>
 
         <TextView
-            android:id="@+id/deskripsi"
+            android:id="@+id/jam"
             android:layout_below="@+id/garis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lorem Ipsum Donot sir ammet"
-            android:layout_marginLeft="10dp"
+            android:text="20:00"
+            android:gravity="right"
+            android:textSize="13sp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="2dp"
             android:textColor="#535050"/>
 

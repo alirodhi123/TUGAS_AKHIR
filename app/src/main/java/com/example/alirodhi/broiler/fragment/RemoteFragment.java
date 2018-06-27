@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 import com.example.alirodhi.broiler.R;
@@ -23,15 +24,16 @@ import java.net.URISyntaxException;
 
 public class RemoteFragment extends Fragment {
 
-    ToggleButton toggleButtonLamp;
-    ToggleButton toggleButtonFan;
-    ToggleButton toggleButtonSpray;
-    ToggleButton toggleButtonExhaustFan;
+    Switch switchButtonLamp;
+    Switch switchButtonFan;
+    Switch switchButtonSpray;
+    Switch switchButtonExhaustFan;
 
     private Socket sc;
     {
         try{
-            sc = IO.socket("https://ali.jagopesan.com/");
+            //sc = IO.socket("https://ali.jagopesan.com/");
+            sc = IO.socket("http://192.168.43.140:3038/");
         }catch (URISyntaxException e){
             throw new RuntimeException(e);
         }
@@ -54,8 +56,8 @@ public class RemoteFragment extends Fragment {
 
         sc.connect();
 
-        final ToggleButton toggleButtonLamp = (ToggleButton)view.findViewById(R.id.toggleBtnLamp);
-        toggleButtonLamp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final Switch switchButtonLamp = (Switch) view.findViewById(R.id.switchBtnLamp);
+        switchButtonLamp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 JSONObject relayLamp = new JSONObject();
@@ -65,7 +67,7 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonLamp.setText("ON");
+                    //toggleButtonLamp.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
                 } else {
                     try{
@@ -73,15 +75,15 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonLamp.setText("OFF");
+                    //toggleButtonLamp.setText("OFF");
                     //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
                 }
                 sc.emit("relay1", relayLamp);
             }
         });
 
-        final ToggleButton toggleButtonFan = (ToggleButton)view.findViewById(R.id.toggleBtnFan);
-        toggleButtonFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final Switch switchButtonFan = (Switch) view.findViewById(R.id.switchBtnFan);
+        switchButtonFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 JSONObject relayFan = new JSONObject();
@@ -91,7 +93,7 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonFan.setText("ON");
+                    //toggleButtonFan.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button Fan is on", Toast.LENGTH_LONG).show();
                 } else {
                     try{
@@ -99,15 +101,15 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonFan.setText("OFF");
+                    //toggleButtonFan.setText("OFF");
                     //Toast.makeText(getActivity(), "Toggle button Fan is off", Toast.LENGTH_LONG).show();
                 }
                 sc.emit("relay2", relayFan);
             }
         });
 
-        final ToggleButton toggleButtonSpray = (ToggleButton)view.findViewById(R.id.toggleBtnSpray);
-        toggleButtonSpray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final Switch switchButtonSpray = (Switch) view.findViewById(R.id.switchBtnSpray);
+        switchButtonSpray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 JSONObject relaySpray = new JSONObject();
@@ -117,7 +119,7 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonSpray.setText("ON");
+                    //toggleButtonSpray.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
                 } else {
                     try{
@@ -125,15 +127,15 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonFan.setText("OFF");
+                    //toggleButtonFan.setText("OFF");
                     //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
                 }
                 sc.emit("relay3", relaySpray);
             }
         });
 
-        ToggleButton toggleButtonExhaustFan = (ToggleButton)view.findViewById(R.id.toggleBtnExhaustFan);
-        toggleButtonExhaustFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Switch switchButtonExhaustFan = (Switch) view.findViewById(R.id.switchBtnExhaustFan);
+        switchButtonExhaustFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 JSONObject relayExhaustFan = new JSONObject();
@@ -143,7 +145,7 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    toggleButtonSpray.setText("ON");
+                    //toggleButtonSpray.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button exhaust fan is on", Toast.LENGTH_LONG).show();
                 } else {
                     try{
@@ -153,7 +155,7 @@ public class RemoteFragment extends Fragment {
                     }
                     //Toast.makeText(getActivity(), "Toggle button exhsust fan is off", Toast.LENGTH_LONG).show();
                 }
-                toggleButtonSpray.setText("OFF");
+                //toggleButtonSpray.setText("OFF");
                 sc.emit("relay4", relayExhaustFan);
             }
         });
@@ -176,12 +178,12 @@ public class RemoteFragment extends Fragment {
                         return;
                     }
                     Log.e("Status lampu: ", status);
-                    toggleButtonLamp = (ToggleButton) getActivity().findViewById(R.id.toggleBtnLamp);
+                    switchButtonLamp = (Switch) getActivity().findViewById(R.id.switchBtnLamp);
                     if (status== "true"){
-                        toggleButtonLamp.setChecked(true);
+                        switchButtonLamp.setChecked(true);
                     }
                     else{
-                        toggleButtonLamp.setChecked(false);
+                        switchButtonLamp.setChecked(false);
                     }
                 }
             });
@@ -203,12 +205,12 @@ public class RemoteFragment extends Fragment {
                         return;
                     }
                     Log.e("Status kipas: ", status);
-                    toggleButtonFan = (ToggleButton) getActivity().findViewById(R.id.toggleBtnFan);
+                    switchButtonFan = (Switch) getActivity().findViewById(R.id.switchBtnFan);
                     if (status == "true"){
-                        toggleButtonFan.setChecked(true);
+                        switchButtonFan.setChecked(true);
                     }
                     else{
-                        toggleButtonFan.setChecked(false);
+                        switchButtonFan.setChecked(false);
                     }
                 }
             });
@@ -230,12 +232,12 @@ public class RemoteFragment extends Fragment {
                         return;
                     }
                     Log.e("Status spray: ", status);
-                    toggleButtonSpray = (ToggleButton) getActivity().findViewById(R.id.toggleBtnSpray);
+                    switchButtonSpray = (Switch) getActivity().findViewById(R.id.switchBtnSpray);
                     if (status == "true"){
-                        toggleButtonSpray.setChecked(true);
+                        switchButtonSpray.setChecked(true);
                     }
                     else{
-                        toggleButtonSpray.setChecked(false);
+                        switchButtonSpray.setChecked(false);
                     }
                 }
             });
@@ -257,16 +259,15 @@ public class RemoteFragment extends Fragment {
                         return;
                     }
                     Log.e("Status exhaust fan: ", status);
-                    toggleButtonExhaustFan = (ToggleButton) getActivity().findViewById(R.id.toggleBtnExhaustFan);
+                    switchButtonExhaustFan = (Switch) getActivity().findViewById(R.id.switchBtnExhaustFan);
                     if (status == "true"){
-                        toggleButtonExhaustFan.setChecked(true);
+                        switchButtonExhaustFan.setChecked(true);
                     }
                     else{
-                        toggleButtonExhaustFan.setChecked(false);
+                        switchButtonExhaustFan.setChecked(false);
                     }
                 }
             });
         }
     };
 }
-

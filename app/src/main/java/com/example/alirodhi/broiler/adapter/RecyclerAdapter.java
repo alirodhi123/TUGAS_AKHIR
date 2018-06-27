@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.alirodhi.broiler.DateParser;
 import com.example.alirodhi.broiler.Models.LogModel;
 import com.example.alirodhi.broiler.R;
 
@@ -42,9 +43,43 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         LogModel logModel = mData.get(position);
         holder.tv_judul.setText(mData.get(position).getTitle());
-        holder.tv_jam.setText(mData.get(position).getTanggal());
+        holder.tv_jam.setText(DateParser.parseDateToDayDateMonthYear(mData.get(position).getTanggal()));
         holder.tv_deskripsi.setText(mData.get(position).getKeterangan());
-       // holder.img.setImageResource(mData.get(position).getImage());
+        //holder.img.setImageResource(mData.get(position).getImage());
+
+        switch (mData.get(position).getTitle()){
+            case "Lamp On":
+                holder.img.setImageResource(R.drawable.ic_lamp_on);
+                break;
+
+            case "Lamp Off":
+                holder.img.setImageResource(R.drawable.ic_lamp_off);
+                break;
+
+            case "Fan On":
+                holder.img.setImageResource(R.drawable.ic_fan_on);
+                break;
+
+            case "Fan Off":
+                holder.img.setImageResource(R.drawable.ic_fan_off);
+                break;
+
+            case "Spray On":
+                holder.img.setImageResource(R.drawable.ic_spray_on);
+                break;
+
+            case "Spray Off":
+                holder.img.setImageResource(R.drawable.ic_spray_off);
+                break;
+
+            case "Exhaust On":
+                holder.img.setImageResource(R.drawable.ic_fan_out);
+                break;
+
+            case "Exhaust Off":
+                holder.img.setImageResource(R.drawable.ic_fan_out_off);
+                break;
+        }
     }
 
     @Override

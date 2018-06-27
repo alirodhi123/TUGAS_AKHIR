@@ -19,7 +19,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    public static final String URL = "https://ali.jagopesan.com/";
+    //public static final String URL = "https://ali.jagopesan.com/";
+    public static final String URL = "http://192.168.43.140:3038/";
 
     private List<SensorModel> sensorModels = new ArrayList<>();
 

@@ -84,13 +84,20 @@
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <ToggleButton
-                    android:id="@+id/toggleBtnLamp"
+                <Switch
+                    android:id="@+id/switchBtnLamp"
                     android:layout_width="67dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/slc_button"/>
+                    android:layout_margin="10dp"/>
+
+                <!--<ToggleButton-->
+                <!--android:id="@+id/toggleBtnLamp"-->
+                <!--android:layout_width="67dp"-->
+                <!--android:layout_height="65dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@drawable/slc_button"/>-->
             </LinearLayout>
         </LinearLayout>
 
@@ -136,27 +143,26 @@
                 android:orientation="horizontal">
 
                 <!--<Button-->
-                    <!--android:id="@+id/btnFanOn"-->
-                    <!--android:layout_width="50dp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:layout_margin="80dp"-->
-                    <!--android:background="@drawable/btn_circle"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:textColor="@color/colorPrimary"-->
-                    <!--android:text="ON"/>-->
+                <!--android:id="@+id/btnFanOn"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_margin="80dp"-->
+                <!--android:background="@drawable/btn_circle"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:text="ON"/>-->
                 <View android:layout_width="1.5dp"
                     android:layout_gravity="center_vertical"
                     android:layout_height="50dp"
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <ToggleButton
-                    android:id="@+id/toggleBtnFan"
+                <Switch
+                    android:id="@+id/switchBtnFan"
                     android:layout_width="67dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/slc_button"/>
+                    android:layout_marginLeft="10dp"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -201,13 +207,13 @@
                 android:orientation="horizontal">
 
                 <!--<Button-->
-                    <!--android:layout_width="50dp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:background="@drawable/btn_circle"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_margin="80dp"-->
-                    <!--android:textColor="@color/colorPrimary"-->
-                    <!--android:text="ON"/>-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="@drawable/btn_circle"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="80dp"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:text="ON"/>-->
 
                 <View android:layout_width="1.5dp"
                     android:layout_gravity="center_vertical"
@@ -215,13 +221,12 @@
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <ToggleButton
-                    android:id="@+id/toggleBtnSpray"
+                <Switch
+                    android:id="@+id/switchBtnSpray"
                     android:layout_width="67dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/slc_button"/>
+                    android:layout_margin="10dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -279,14 +284,14 @@
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <ToggleButton
-                    android:id="@+id/toggleBtnExhaustFan"
+                <Switch
+                    android:id="@+id/switchBtnExhaustFan"
                     android:layout_width="67dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/slc_button"/>
+                    android:layout_margin="10dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 </FrameLayout>
