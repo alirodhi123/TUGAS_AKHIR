@@ -5,4 +5,5 @@
     <color name="backgroundColor">#fcfcfc</color>
     <color name="lightGray">#ededed</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="grey">#dadada</color>
 </resources>

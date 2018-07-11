@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppThemeEdited" >
         <activity android:name="com.example.alirodhi.broiler.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

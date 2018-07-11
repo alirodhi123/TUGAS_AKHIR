@@ -5,49 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/view_toolbar"
             />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_below="@id/toolbar"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorHeight="4dp"
+            app:tabTextColor="@color/colorPrimaryDark"
+            app:tabSelectedTextColor="@color/backgroundColor"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:clipToPadding="false">
+            android:layout_weight="1">
 
-        </android.support.v7.widget.RecyclerView>
+        </android.support.v4.view.ViewPager>
 
-        <RelativeLayout
-            android:id="@+id/ln_empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible">
-
-            <ImageView
-                android:id="@+id/cloud"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_cloud_off"
-                android:layout_centerInParent="true"
-                android:layout_margin="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cloud"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="Please Check Your Connection Internet"
-                android:textSize="16sp" />
-        </RelativeLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

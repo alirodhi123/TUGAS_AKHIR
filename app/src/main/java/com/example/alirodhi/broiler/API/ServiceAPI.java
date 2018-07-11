@@ -1,6 +1,8 @@
 package com.example.alirodhi.broiler.API;
 
-import com.example.alirodhi.broiler.Models.ResponseModel;
+import com.example.alirodhi.broiler.Models.RelayModel;
+import com.example.alirodhi.broiler.Models.ResponseLogModel;
+import com.example.alirodhi.broiler.Models.ResponseSensorModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,8 +13,11 @@ import retrofit2.http.GET;
 
 public interface ServiceAPI {
     @GET("log/get-log")
-    Call<ResponseModel> getLogLamp();
+    Call<ResponseLogModel> getLogLamp();
 
     @GET("sensor")
-    Call<ResponseModel> getSensor();
+    Call<ResponseSensorModel> getDataSensor();
+
+    @GET("relay/get-relay/state")
+    Call<RelayModel> getStateRelay();
 }

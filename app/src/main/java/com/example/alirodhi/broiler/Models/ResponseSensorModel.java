@@ -6,11 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by alirodhi on 6/13/2018.
+ * Created by alirodhi on 6/29/2018.
  */
 
-public class ResponseModel {
-
+public class ResponseSensorModel {
     @SerializedName("status")
     @Expose
     private String status;
@@ -19,7 +18,7 @@ public class ResponseModel {
     private String message;
     @SerializedName("data")
     @Expose
-    private List<LogModel> data = null;
+    private List<SensorModel> data = null;
 
     public String getStatus() {
         return status;
@@ -37,11 +36,11 @@ public class ResponseModel {
         this.message = message;
     }
 
-    public List<LogModel> getData() {
+    public List<SensorModel> getData() {
         return data;
     }
 
-    public void setData(List<LogModel> data) {
+    public void setData(List<SensorModel> data) {
         this.data = data;
     }
 }

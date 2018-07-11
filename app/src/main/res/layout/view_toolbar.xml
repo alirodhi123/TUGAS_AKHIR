@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.Toolbar android:layout_width="match_parent"
     android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    android:theme="@style/AppTheme"
-    android:elevation="4dp">
-
+    android:theme="@style/AppThemeEdited"
+    android:titleTextColor="@color/backgroundColor"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#ffff"
-        tools:text="Logs Activity"
+        android:layout_width="wrap_content"
         android:id="@+id/toolbar_text"
-        android:textSize="20sp"
-        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
-
+        android:textStyle="bold"
+        android:text="awawdwad"
+        android:textSize="20dp"
+        android:textColor="@color/backgroundColor"
+        android:layout_height="wrap_content" />
 </android.support.v7.widget.Toolbar>

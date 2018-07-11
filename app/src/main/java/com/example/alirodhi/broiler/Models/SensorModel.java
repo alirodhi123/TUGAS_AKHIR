@@ -26,6 +26,9 @@ public class SensorModel {
     @SerializedName("amonia")
     @Expose
     private Double amonia;
+    @SerializedName("bat")
+    @Expose
+    private Integer bat;
 
     public String getTanngal() {
         return tanngal;
@@ -73,5 +76,13 @@ public class SensorModel {
 
     public void setAmonia(Double amonia) {
         this.amonia = amonia;
+    }
+
+    public Integer getBat() {
+        return bat;
+    }
+
+    public void setBat(Integer bat) {
+        this.bat = bat;
     }
 }

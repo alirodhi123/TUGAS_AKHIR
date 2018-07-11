@@ -21,7 +21,6 @@
                 android:text="Relay Status"
                 android:textSize="30sp"
                 android:textColor="#ffff"
-                android:layout_margin="33dp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -84,20 +83,25 @@
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <Switch
-                    android:id="@+id/switchBtnLamp"
-                    android:layout_width="67dp"
-                    android:layout_height="65dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"/>
+                <!--<Switch-->
+                    <!--android:id="@+id/switchBtnLamp"-->
+                    <!--android:layout_width="67dp"-->
+                    <!--android:layout_height="65dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:background="@drawable/slc_button"/>-->
 
-                <!--<ToggleButton-->
-                <!--android:id="@+id/toggleBtnLamp"-->
-                <!--android:layout_width="67dp"-->
-                <!--android:layout_height="65dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="10dp"-->
-                <!--android:background="@drawable/slc_button"/>-->
+                <ToggleButton
+                    android:id="@+id/switchBtnLamp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="30dp"
+                    android:textOn="on"
+                    android:textOff="off"
+                    android:textColor="#dadada"
+                    android:background="@drawable/slc_circle_btn" />
             </LinearLayout>
         </LinearLayout>
 
@@ -142,27 +146,30 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <!--<Button-->
-                <!--android:id="@+id/btnFanOn"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_margin="80dp"-->
-                <!--android:background="@drawable/btn_circle"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:textColor="@color/colorPrimary"-->
-                <!--android:text="ON"/>-->
                 <View android:layout_width="1.5dp"
                     android:layout_gravity="center_vertical"
                     android:layout_height="50dp"
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <Switch
+                <!--<Switch-->
+                    <!--android:id="@+id/switchBtnFan"-->
+                    <!--android:layout_width="67dp"-->
+                    <!--android:layout_height="65dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_marginLeft="10dp" />-->
+
+                <ToggleButton
                     android:id="@+id/switchBtnFan"
-                    android:layout_width="67dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"/>
+                    android:textSize="12sp"
+                    android:layout_marginLeft="30dp"
+                    android:textOn="on"
+                    android:textOff="off"
+                    android:textColor="#dadada"
+                    android:background="@drawable/slc_circle_btn" />
 
             </LinearLayout>
         </LinearLayout>
@@ -206,27 +213,29 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <!--<Button-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:background="@drawable/btn_circle"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="80dp"-->
-                <!--android:textColor="@color/colorPrimary"-->
-                <!--android:text="ON"/>-->
-
                 <View android:layout_width="1.5dp"
                     android:layout_gravity="center_vertical"
                     android:layout_height="50dp"
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <Switch
+                <Button
                     android:id="@+id/switchBtnSpray"
-                    android:layout_width="67dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_circle"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp" />
+                    android:text="PRESS"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/colorPrimary" />
+
+                <!--<Switch-->
+                    <!--android:id="@+id/switchBtnSpray"-->
+                    <!--android:layout_width="67dp"-->
+                    <!--android:layout_height="65dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp" />-->
             </LinearLayout>
         </LinearLayout>
 
@@ -269,27 +278,30 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <!--<Button-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:background="@drawable/btn_circle"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="80dp"-->
-                <!--android:textColor="@color/colorPrimary"-->
-                <!--android:text="ON"/>-->
-
                 <View android:layout_width="1.5dp"
                     android:layout_gravity="center_vertical"
                     android:layout_height="50dp"
                     android:layout_marginLeft="70dp"
                     android:background="#ecebeb"/>
 
-                <Switch
+                <!--<Switch-->
+                    <!--android:id="@+id/switchBtnExhaustFan"-->
+                    <!--android:layout_width="67dp"-->
+                    <!--android:layout_height="65dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp" />-->
+
+                <ToggleButton
                     android:id="@+id/switchBtnExhaustFan"
-                    android:layout_width="67dp"
-                    android:layout_height="65dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp" />
+                    android:textSize="12sp"
+                    android:layout_marginLeft="30dp"
+                    android:textOn="On"
+                    android:textOff="off"
+                    android:textColor="#dadada"
+                    android:background="@drawable/slc_circle_btn" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

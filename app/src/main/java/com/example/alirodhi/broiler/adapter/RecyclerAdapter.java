@@ -42,10 +42,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         LogModel logModel = mData.get(position);
+
+        final String date = DateParser.parseDateToDayDateMonthYear(mData.get(position).getTanggal());
+        String[] dates = date.split(" ");
+
         holder.tv_judul.setText(mData.get(position).getTitle());
-        holder.tv_jam.setText(DateParser.parseDateToDayDateMonthYear(mData.get(position).getTanggal()));
+        holder.tv_jam.setText(dates[4]);
+        holder.tv_tanggal.setText(dates[0] +" "+ dates[1] +" "+ dates[2]+" "+ dates[3]);
         holder.tv_deskripsi.setText(mData.get(position).getKeterangan());
         //holder.img.setImageResource(mData.get(position).getImage());
+        holder.img_jam.setImageResource(R.drawable.ic_clock);
+        holder.img_tgl.setImageResource(R.drawable.ic_calendar);
 
         switch (mData.get(position).getTitle()){
             case "Lamp On":
@@ -92,7 +99,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         private TextView tv_judul;
         private TextView tv_jam;
         private TextView tv_deskripsi;
+        private TextView tv_tanggal;
         private ImageView img;
+        private ImageView img_jam;
+        private ImageView img_tgl;
 
 
         public RecyclerViewHolder(View itemView){
@@ -100,8 +110,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             tv_judul = (TextView)itemView.findViewById(R.id.judul);
             tv_jam = (TextView)itemView.findViewById(R.id.jam);
+            tv_tanggal = (TextView)itemView.findViewById(R.id.tanggal);
             tv_deskripsi = (TextView)itemView.findViewById(R.id.deskripsi);
             img = (ImageView)itemView.findViewById(R.id.daftar_icon);
+            img_jam = (ImageView)itemView.findViewById(R.id.img_jam);
+            img_tgl = (ImageView)itemView.findViewById(R.id.img_tgl);
         }
     }
 }

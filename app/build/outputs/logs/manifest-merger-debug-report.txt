@@ -82,7 +82,7 @@ MERGED from [com.android.support:support-compat:26.0.0] C:\Users\alirodhi\.gradl
 	android:allowBackup
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:13:9-40
+		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:13:9-46
 activity#com.example.alirodhi.broiler.MainActivity
 ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:15:9-21:20
 	android:name

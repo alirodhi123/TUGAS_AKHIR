@@ -6,12 +6,16 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.ToggleButton;
 
+import com.example.alirodhi.broiler.API.ServiceAPI;
+import com.example.alirodhi.broiler.Models.RelayModel;
 import com.example.alirodhi.broiler.R;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -22,12 +26,22 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RemoteFragment extends Fragment {
 
-    Switch switchButtonLamp;
-    Switch switchButtonFan;
-    Switch switchButtonSpray;
-    Switch switchButtonExhaustFan;
+    public static final String URL = "http://192.168.43.140:3038/";
+
+    ToggleButton switchButtonLamp;
+    ToggleButton switchButtonFan;
+    Button switchButtonSpray;
+    ToggleButton switchButtonExhaustFan;
+
+    private RelayModel relayState;
 
     private Socket sc;
     {
@@ -53,10 +67,9 @@ public class RemoteFragment extends Fragment {
         sc.on("relay2", statusFan);
         sc.on("relay3", statusSpray);
         sc.on("relay4", statusExhaustFan);
-
         sc.connect();
 
-        final Switch switchButtonLamp = (Switch) view.findViewById(R.id.switchBtnLamp);
+        switchButtonLamp = (ToggleButton) view.findViewById(R.id.switchBtnLamp);
         switchButtonLamp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -67,6 +80,8 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                    relayLampTrue();
+                    switchButtonLamp.setTextColor(getResources().getColor(R.color.colorPrimary));
                     //toggleButtonLamp.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
                 } else {
@@ -75,6 +90,8 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                    relayLampFalse();
+                    switchButtonLamp.setTextColor(getResources().getColor(R.color.grey));
                     //toggleButtonLamp.setText("OFF");
                     //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
                 }
@@ -82,7 +99,7 @@ public class RemoteFragment extends Fragment {
             }
         });
 
-        final Switch switchButtonFan = (Switch) view.findViewById(R.id.switchBtnFan);
+        switchButtonFan = (ToggleButton) view.findViewById(R.id.switchBtnFan);
         switchButtonFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -93,6 +110,8 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                    relayFanTrue();
+                    switchButtonFan.setTextColor(getResources().getColor(R.color.colorPrimary));
                     //toggleButtonFan.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button Fan is on", Toast.LENGTH_LONG).show();
                 } else {
@@ -101,6 +120,8 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                    relayFanFalse();
+                    switchButtonFan.setTextColor(getResources().getColor(R.color.grey));
                     //toggleButtonFan.setText("OFF");
                     //Toast.makeText(getActivity(), "Toggle button Fan is off", Toast.LENGTH_LONG).show();
                 }
@@ -108,33 +129,66 @@ public class RemoteFragment extends Fragment {
             }
         });
 
-        final Switch switchButtonSpray = (Switch) view.findViewById(R.id.switchBtnSpray);
-        switchButtonSpray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchButtonSpray = (Button) view.findViewById(R.id.switchBtnSpray);
+        switchButtonSpray.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                JSONObject relaySpray = new JSONObject();
-                if (isChecked){
+            public boolean onTouch(View v, MotionEvent event) {
+                int aksi = event.getAction();
+
+                if (aksi == MotionEvent.ACTION_DOWN){
+                    Log.d("test", "penek");
+                    relaySprayTrue();
+                    JSONObject relaySpray1 = new JSONObject();
                     try {
-                        relaySpray.put("status", true);
+                        relaySpray1.put("status", true);
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    //toggleButtonSpray.setText("ON");
-                    //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
-                } else {
-                    try{
-                        relaySpray.put("status", false);
+                    sc.emit("relay3", relaySpray1);
+
+                } else if (aksi == event.ACTION_UP){
+                    Log.d("test", "ga penek");
+                    relaySprayFalse();
+                    JSONObject relaySpray2 = new JSONObject();
+                    try {
+                        relaySpray2.put("status", false);
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    //toggleButtonFan.setText("OFF");
-                    //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
+                    sc.emit("relay3", relaySpray2);
+
                 }
-                sc.emit("relay3", relaySpray);
+                return false;
             }
         });
+//        switchButtonSpray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+//                JSONObject relaySpray = new JSONObject();
+//                if (isChecked){
+//                    try {
+//                        relaySpray.put("status", true);
+//                    }catch (JSONException e){
+//                        e.printStackTrace();
+//                    }
+//                    relaySprayTrue();
+//                    //toggleButtonSpray.setText("ON");
+//                    //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
+//                } else {
+//                    try{
+//                        relaySpray.put("status", false);
+//                    }catch (JSONException e){
+//                        e.printStackTrace();
+//                    }
+//                    relaySprayFalse();
+//                    //toggleButtonFan.setText("OFF");
+//                    //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
+//                }
+//                sc.emit("relay3", relaySpray);
+//            }
+//        });
 
-        Switch switchButtonExhaustFan = (Switch) view.findViewById(R.id.switchBtnExhaustFan);
+        switchButtonExhaustFan = (ToggleButton) view.findViewById(R.id.switchBtnExhaustFan);
         switchButtonExhaustFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -145,6 +199,8 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                    relayExhaustFanTrue();
+                    switchButtonExhaustFan.setTextColor(getResources().getColor(R.color.colorPrimary));
                     //toggleButtonSpray.setText("ON");
                     //Toast.makeText(getActivity(), "Toggle button exhaust fan is on", Toast.LENGTH_LONG).show();
                 } else {
@@ -153,6 +209,8 @@ public class RemoteFragment extends Fragment {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                    relayExhaustFanFalse();
+                    switchButtonExhaustFan.setTextColor(getResources().getColor(R.color.grey));
                     //Toast.makeText(getActivity(), "Toggle button exhsust fan is off", Toast.LENGTH_LONG).show();
                 }
                 //toggleButtonSpray.setText("OFF");
@@ -160,114 +218,171 @@ public class RemoteFragment extends Fragment {
             }
         });
 
+        getStateRelay();
+
         return view;
+    }
+
+
+    //state relay
+    private void getStateRelay(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
+        final Call<RelayModel> relayModel  = serviceAPI.getStateRelay();
+        relayModel.enqueue(new Callback<RelayModel>() {
+            @Override
+            public void onResponse(Call<RelayModel> call, Response<RelayModel> response) {
+                switchButtonLamp.setChecked(response.body().getLamp());
+                switchButtonFan.setChecked(response.body().getFan());
+                //switchButtonSpray.setChecked(response.body().getSpray());
+                switchButtonExhaustFan.setChecked(response.body().getExhaust());
+
+            }
+
+            @Override
+            public void onFailure(Call<RelayModel> call, Throwable t) {
+
+            }
+        });
     }
 
     //Emitter relay lampu
     private Emitter.Listener statusLamp = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    String status;
-                    try{
-                        status = data.getString("status");
-                    }catch (JSONException e){
-                        return;
+            if(getActivity()!=null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+                        String status;
+                        try {
+                            status = data.getString("status");
+                        } catch (JSONException e) {
+                            return;
+                        }
+                        Log.e("Status lampu: ", status);
+                        switchButtonLamp = (ToggleButton) getActivity().findViewById(R.id.switchBtnLamp);
+                        if (status == "true") {
+                            relayLampTrue();
+                            switchButtonLamp.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        } else {
+                            relayLampFalse();
+                            switchButtonLamp.setTextColor(getResources().getColor(R.color.grey));
+                        }
                     }
-                    Log.e("Status lampu: ", status);
-                    switchButtonLamp = (Switch) getActivity().findViewById(R.id.switchBtnLamp);
-                    if (status== "true"){
-                        switchButtonLamp.setChecked(true);
-                    }
-                    else{
-                        switchButtonLamp.setChecked(false);
-                    }
-                }
-            });
+                });
+            }
         }
     };
+
+    private void relayLampTrue() {}
+
+    private void relayLampFalse() {}
 
     //Emitter relay fan
     private Emitter.Listener statusFan = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    String status;
-                    try{
-                        status = data.getString("status");
-                    }catch (JSONException e){
-                        return;
+            if(getActivity()!=null){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+                        String status;
+                        try{
+                            status = data.getString("status");
+                        }catch (JSONException e){
+                            return;
+                        }
+                        Log.e("Status kipas: ", status);
+                        switchButtonFan = (ToggleButton) getActivity().findViewById(R.id.switchBtnFan);
+                        if (status == "true"){
+                            relayFanTrue();
+                            switchButtonFan.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        }
+                        else{
+                            relayFanFalse();
+                            switchButtonFan.setTextColor(getResources().getColor(R.color.grey));
+                        }
                     }
-                    Log.e("Status kipas: ", status);
-                    switchButtonFan = (Switch) getActivity().findViewById(R.id.switchBtnFan);
-                    if (status == "true"){
-                        switchButtonFan.setChecked(true);
-                    }
-                    else{
-                        switchButtonFan.setChecked(false);
-                    }
-                }
-            });
+                });
+            }
         }
     };
+
+    private void relayFanTrue() {}
+
+    private void relayFanFalse() {}
 
     //Emitter relay spray
     private Emitter.Listener statusSpray = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    String status;
-                    try{
-                        status = data.getString("status");
-                    }catch (JSONException e){
-                        return;
+            if(getActivity()!=null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+                        String status;
+                        try {
+                            status = data.getString("status");
+                        } catch (JSONException e) {
+                            return;
+                        }
+                        Log.e("Status spray: ", status);
+                        switchButtonSpray = (Button) getActivity().findViewById(R.id.switchBtnSpray);
+                        if (status == "true") {
+                            relaySprayTrue();
+                        } else {
+                            relaySprayFalse();
+                        }
                     }
-                    Log.e("Status spray: ", status);
-                    switchButtonSpray = (Switch) getActivity().findViewById(R.id.switchBtnSpray);
-                    if (status == "true"){
-                        switchButtonSpray.setChecked(true);
-                    }
-                    else{
-                        switchButtonSpray.setChecked(false);
-                    }
-                }
-            });
+                });
+            }
         }
     };
+
+    private void relaySprayTrue() {}
+
+    private void relaySprayFalse() {}
 
     //Emitter relay exhaust fan
     private Emitter.Listener statusExhaustFan = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    String status;
-                    try{
-                        status = data.getString("status");
-                    }catch (JSONException e){
-                        return;
+            if(getActivity()!=null){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+                        String status;
+                        try{
+                            status = data.getString("status");
+                        }catch (JSONException e){
+                            return;
+                        }
+                        Log.e("Status exhaust fan: ", status);
+                        switchButtonExhaustFan = (ToggleButton) getActivity().findViewById(R.id.switchBtnExhaustFan);
+                        if (status == "true"){
+                            relayExhaustFanTrue();
+                            switchButtonExhaustFan.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        }
+                        else{
+                            relayExhaustFanFalse();
+                            switchButtonExhaustFan.setTextColor(getResources().getColor(R.color.grey));
+                        }
                     }
-                    Log.e("Status exhaust fan: ", status);
-                    switchButtonExhaustFan = (Switch) getActivity().findViewById(R.id.switchBtnExhaustFan);
-                    if (status == "true"){
-                        switchButtonExhaustFan.setChecked(true);
-                    }
-                    else{
-                        switchButtonExhaustFan.setChecked(false);
-                    }
-                }
-            });
+                });
+            }
         }
     };
+
+    private void relayExhaustFanTrue() {}
+
+    private void relayExhaustFanFalse() {}
 }

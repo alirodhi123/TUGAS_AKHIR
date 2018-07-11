@@ -8,10 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
+import com.example.alirodhi.broiler.db.DatabaseHelper;
 import com.example.alirodhi.broiler.fragment.HomeFragment;
 import com.example.alirodhi.broiler.fragment.LogFragment;
+import com.example.alirodhi.broiler.fragment.LogRelayFragment;
 import com.example.alirodhi.broiler.fragment.RemoteFragment;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     TabLayout MyTabs;
     ViewPager MyPage;
     RecyclerView mRecyclerView;
+
+    //public DatabaseHelper db;
 
     private BottomBar bottomBar;
     private Fragment fragment = null;
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //db = new DatabaseHelper(this);
 
         //Connect to socket server
         sc.connect();
