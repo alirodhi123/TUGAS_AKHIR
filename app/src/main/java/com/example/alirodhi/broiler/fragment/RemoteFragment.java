@@ -69,6 +69,12 @@ public class RemoteFragment extends Fragment {
         sc.on("relay4", statusExhaustFan);
         sc.connect();
 
+
+        /**
+         * SOCKET IO
+         * Function to control toggle button
+         * Toggle button lamp
+         */
         switchButtonLamp = (ToggleButton) view.findViewById(R.id.switchBtnLamp);
         switchButtonLamp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -99,6 +105,11 @@ public class RemoteFragment extends Fragment {
             }
         });
 
+        /**
+         * SOCKET IO
+         * Function to control toggle button
+         * Toggle button fan
+         */
         switchButtonFan = (ToggleButton) view.findViewById(R.id.switchBtnFan);
         switchButtonFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -129,6 +140,11 @@ public class RemoteFragment extends Fragment {
             }
         });
 
+        /**
+         * SOCKET IO
+         * Function to control toggle button
+         * Toggle button spray
+         */
         switchButtonSpray = (Button) view.findViewById(R.id.switchBtnSpray);
         switchButtonSpray.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -188,6 +204,11 @@ public class RemoteFragment extends Fragment {
 //            }
 //        });
 
+        /**
+         * SOCKET IO
+         * Function to control toggle button
+         * Toggle button exhaust fan
+         */
         switchButtonExhaustFan = (ToggleButton) view.findViewById(R.id.switchBtnExhaustFan);
         switchButtonExhaustFan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -224,7 +245,11 @@ public class RemoteFragment extends Fragment {
     }
 
 
-    //state relay
+    /**
+     * RETROFIT
+     * Function get state relay from mongodb
+     * Output: True or false
+     */
     private void getStateRelay(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)

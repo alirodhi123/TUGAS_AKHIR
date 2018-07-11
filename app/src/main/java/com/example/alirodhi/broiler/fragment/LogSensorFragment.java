@@ -83,7 +83,11 @@ public class LogSensorFragment extends Fragment {
     }
 
 
-
+    /**
+     * Delete histrory from sqlite database
+     * SQLITE DATABASE
+     * ---
+     */
     private void deleteHistory(int position) {
         // deleting the note from db
         db.deleteHistory(historySensorModels.get(position));
@@ -95,6 +99,11 @@ public class LogSensorFragment extends Fragment {
         toggleEmptyHistory();
     }
 
+    /**
+     * If list on touche
+     * SQLITE DATABASE
+     * Output : will show delete dialog
+     */
     private void showActionsDialog(final int position) {
         CharSequence colors[] = new CharSequence[]{"Delete"};
 

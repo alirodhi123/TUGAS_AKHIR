@@ -49,6 +49,8 @@ public class HomeFragment extends Fragment {
     public static final String HISTORY_PREF = "history-pref";
     public static final String LAST_TEMP = "last-temp";
     public static final String LAST_HUM = "last-hum";
+    public static final String LAST_CO2 = "last-cdioksida";
+    public static final String LAST_NH3 = "last-ammonia";
 
     //public static final String URL = "https://ali.jagopesan.com/";
     public static final String URL = "http://192.168.43.140:3038/";
@@ -58,10 +60,6 @@ public class HomeFragment extends Fragment {
     private SharedPreferences.Editor historyEdit;
 
     private List<SensorModel> sensorModels = new ArrayList<>();
-
-    private int lastHum;
-    private int lastCdioksida;
-    private int lastAmmonia;
 
     private TextView txtTemp;
     private TextView txtHum;
@@ -116,6 +114,11 @@ public class HomeFragment extends Fragment {
         // Database connect
         db = new DatabaseHelper(getContext());
 
+
+        /**
+         * SOCKET IO
+         * Function to execute toggle sensor
+         */
         swSensor = (Switch) view.findViewById(R.id.switchBtnSensor);
         swSensor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -148,7 +151,11 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    // Membaca data sensor from server
+    /**
+     * RETROFIT
+     * Function to get all data sensor from waspmote
+     * Use UI THREAD for looping
+     */
     private void getDataSensor(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -183,15 +190,45 @@ public class HomeFragment extends Fragment {
 
                     float lastTemp = historyPref.getFloat(LAST_TEMP, 0);
                     float lastHum = historyPref.getFloat(LAST_HUM, 0);
+                    float lastCdioksida = historyPref.getFloat(LAST_CO2, 0);
+                    float lastAmmonia = historyPref.getFloat(LAST_NH3, 0);
 
-                    if (tempVal > 20 && tempVal != lastTemp){
-                        // Doing something to insert data in database
-                        historyEdit.putFloat(LAST_TEMP, tempVal);
-                        historyEdit.putFloat(LAST_HUM, humVal);
-                        historyEdit.apply();
+                    // Your condition, what you want save in database SQL
+                    if ( (tempVal >= 29 && tempVal <= 32) &&
+                            (humVal >= 60 && humVal <= 70) &&
+                            (cdioksidaVal < 2500) && (ammoniaVal < 20) )
+                    {
+                        /**
+                         * DATA SENSOR NOT PUSHING IN DATABASE
+                         * because the data condition is good
+                         * Doing something if condition good
+                         */
 
-                        db.insertHistory(temp, hum, dioksida, ammonia);
+                    } else {
+                        if ( (tempVal != lastTemp) ||
+                                (humVal != lastHum) ||
+                                (cdioksidaVal != lastCdioksida) ||
+                                (ammoniaVal != lastAmmonia) )
+                        {
+                            // Data push in database
+                            historyEdit.putFloat(LAST_TEMP, tempVal);
+                            historyEdit.putFloat(LAST_HUM, humVal);
+                            historyEdit.putFloat(LAST_CO2, cdioksidaVal);
+                            historyEdit.putFloat(LAST_NH3, ammoniaVal);
+                            historyEdit.apply();
+
+                            db.insertHistory(temp, hum, dioksida, ammonia);
+                        }
                     }
+
+//                    if (tempVal > 20 && tempVal != lastTemp){
+//                        // Doing something to insert data in database
+//                        historyEdit.putFloat(LAST_TEMP, tempVal);
+//                        historyEdit.putFloat(LAST_HUM, humVal);
+//                        historyEdit.apply();
+//
+//                        db.insertHistory(temp, hum, dioksida, ammonia);
+//                    }
                 }
             }
 
@@ -219,7 +256,11 @@ public class HomeFragment extends Fragment {
 //        super.onDestroy();
 //    }
 
-    //State relay untuk sensor
+    /**
+     * RETROFIT
+     * Get state relay sensor
+     * Output: call last relay sensor true or false
+     */
     private void getStateRelay(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)

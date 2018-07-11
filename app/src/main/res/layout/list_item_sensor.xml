@@ -5,7 +5,7 @@
     android:id="@+id/card_view_sensor"
     android:clickable="true"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="104dp"
     android:layout_marginBottom="5dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
@@ -50,12 +50,11 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:text="Temp"
-                            android:textColor="#535050" />
+                            android:text="Temp: "
+                            android:textColor="#2e2e2e" />
 
                         <TextView
                             android:id="@+id/tv_temp"
@@ -75,12 +74,11 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:text="Hum"
-                            android:textColor="#535050" />
+                            android:text="Hum: "
+                            android:textColor="#2e2e2e" />
 
                         <TextView
                             android:id="@+id/tv_hum"
@@ -100,12 +98,11 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:text="CO2"
-                            android:textColor="#535050" />
+                            android:text="CO2: "
+                            android:textColor="#2e2e2e" />
 
                         <TextView
                             android:id="@+id/tv_cdioksida"
@@ -125,12 +122,11 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:text="NH3"
-                            android:textColor="#535050" />
+                            android:text="NH3: "
+                            android:textColor="#2e2e2e" />
 
                         <TextView
                             android:id="@+id/tv_ammonia"

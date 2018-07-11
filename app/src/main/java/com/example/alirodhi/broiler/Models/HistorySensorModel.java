@@ -5,7 +5,7 @@ package com.example.alirodhi.broiler.Models;
  */
 
 public class HistorySensorModel {
-    public static final String TABLE_NAME = "notes";
+    public static final String TABLE_NAME = " notes";
 
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TEMP = "temp";

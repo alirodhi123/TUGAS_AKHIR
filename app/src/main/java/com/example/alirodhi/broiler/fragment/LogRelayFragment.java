@@ -77,6 +77,12 @@ public class LogRelayFragment extends Fragment {
     //Method toolbar
     private void setSupportActionBar(Toolbar toolbar) {}
 
+
+    /**
+     * RETROFIT
+     * Get all log from relay
+     * Output: Relay on or Relay off, in log activiti will showed
+     */
     private void getLogLamp(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
