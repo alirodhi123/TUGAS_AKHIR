@@ -1,10 +1,14 @@
 package com.example.alirodhi.broiler.fragment;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +16,13 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alirodhi.broiler.API.ServiceAPI;
-import com.example.alirodhi.broiler.MainActivity;
-import com.example.alirodhi.broiler.Models.LogModel;
 import com.example.alirodhi.broiler.Models.RelayModel;
-import com.example.alirodhi.broiler.Models.ResponseLogModel;
 import com.example.alirodhi.broiler.Models.ResponseSensorModel;
 import com.example.alirodhi.broiler.Models.SensorModel;
+import com.example.alirodhi.broiler.service.NotificationService;
 import com.example.alirodhi.broiler.R;
-import com.example.alirodhi.broiler.adapter.RecyclerAdapter;
 //import com.example.alirodhi.broiler.db.DatabaseHelper;
 import com.example.alirodhi.broiler.db.DatabaseHelper;
 import com.github.nkzawa.emitter.Emitter;
@@ -55,7 +55,13 @@ public class HomeFragment extends Fragment {
     //public static final String URL = "https://ali.jagopesan.com/";
     public static final String URL = "http://192.168.43.140:3038/";
 
+    private Context context;
+    private Intent notificationIntent;
+
     private DatabaseHelper db;
+
+    private NotificationManager mgr;
+
     private SharedPreferences historyPref;
     private SharedPreferences.Editor historyEdit;
 
@@ -68,6 +74,14 @@ public class HomeFragment extends Fragment {
     private TextView txtView;
     private Switch swSensor;
 
+    private int currTime;
+    private boolean firstEnterRecursive = true;
+
+    private float tempCache = 0.0f;
+    private float humCache = 0.0f;
+    private float cdioksidaCache = 0.0f;
+    private float ammoniaCache = 0.0f;
+
     private Socket sc;
     {
         try{
@@ -77,14 +91,6 @@ public class HomeFragment extends Fragment {
             throw new RuntimeException(e);
         }
     }
-
-    private Handler handler = new Handler();
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            getDataSensor();
-        }
-    };
 
     public HomeFragment() {}
 
@@ -107,6 +113,7 @@ public class HomeFragment extends Fragment {
         String currentDateandTime = new SimpleDateFormat("dd - MM - yyyy").format(new Date());
         txtView.setText(currentDateandTime);
 
+
         // Connect to socket io
         sc.on("readsensor", getReadserial);
         sc.connect();
@@ -114,6 +121,7 @@ public class HomeFragment extends Fragment {
         // Database connect
         db = new DatabaseHelper(getContext());
 
+        //serviceIntent = new Intent(getActivity(), NotificationService.class);
 
         /**
          * SOCKET IO
@@ -144,8 +152,9 @@ public class HomeFragment extends Fragment {
                 sc.emit("readsensor", sensor);
             }
         });
-
-        updateSensorData();
+//
+//        updateSensorData();
+        getDataSensor();
         getStateRelay();
 
         return view;
@@ -156,13 +165,13 @@ public class HomeFragment extends Fragment {
      * Function to get all data sensor from waspmote
      * Use UI THREAD for looping
      */
-    private void getDataSensor(){
+    private void loadDataCoy () {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
+        final ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
         Call<ResponseSensorModel> call = serviceAPI.getDataSensor();
         call.enqueue(new Callback<ResponseSensorModel>() {
             @Override
@@ -171,6 +180,8 @@ public class HomeFragment extends Fragment {
                 if (value.equals("success")){
                     sensorModels = response.body().getData();
                     SensorModel lastData = sensorModels.get(sensorModels.size() - 1);
+
+                    //int tempInt = Integer.parseInt(lastData.getTemp().toString());
 
                     String temp = String.format("%.1f", lastData.getTemp());
                     String hum = String.format("%.1f", lastData.getHum());
@@ -194,15 +205,20 @@ public class HomeFragment extends Fragment {
                     float lastAmmonia = historyPref.getFloat(LAST_NH3, 0);
 
                     // Your condition, what you want save in database SQL
-                    if ( (tempVal >= 29 && tempVal <= 32) &&
-                            (humVal >= 60 && humVal <= 70) &&
-                            (cdioksidaVal < 2500) && (ammoniaVal < 20) )
+                    if ( (tempVal < 27 || tempVal > 32) && (humVal < 60 || humVal > 70) )
                     {
-                        /**
-                         * DATA SENSOR NOT PUSHING IN DATABASE
-                         * because the data condition is good
-                         * Doing something if condition good
-                         */
+                        // Create Notification
+                        mgr = (NotificationManager)getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
+                        Notification notification = new NotificationCompat.Builder(getContext(), "exampleServiceChannel")
+                                .setContentTitle("Sensor Gases")
+                                .setContentText("WARNING! Please check the air condition")
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setAutoCancel(true)
+                                .setDefaults(Notification.DEFAULT_ALL)
+                                .build();
+
+                        mgr.notify(1, notification);
 
                     } else {
                         if ( (tempVal != lastTemp) ||
@@ -220,15 +236,6 @@ public class HomeFragment extends Fragment {
                             db.insertHistory(temp, hum, dioksida, ammonia);
                         }
                     }
-
-//                    if (tempVal > 20 && tempVal != lastTemp){
-//                        // Doing something to insert data in database
-//                        historyEdit.putFloat(LAST_TEMP, tempVal);
-//                        historyEdit.putFloat(LAST_HUM, humVal);
-//                        historyEdit.apply();
-//
-//                        db.insertHistory(temp, hum, dioksida, ammonia);
-//                    }
                 }
             }
 
@@ -237,24 +244,33 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-        handler.postDelayed(runnable, 5000);
     }
 
-    private void updateSensorData() {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                getDataSensor();
+    /**
+     * UI THREAD
+     * Get data sensor with delay 6 second
+     * Output: Looping every 6 s
+     */
+    private void getDataSensor(){
+
+        final Thread thread = new Thread(){
+            public void run(){
+                try{
+                    sleep(20000);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }finally {
+                    getDataSensor();
+                }
             }
-        });
+        };
+        thread.start();
+
+        if (thread.getId() % 2 == 0) {
+            loadDataCoy();
+        }
     }
 
-//    @Override
-//    public void onDestroy() {
-//        handler.removeCallbacks(runnable);
-//        super.onDestroy();
-//    }
 
     /**
      * RETROFIT
@@ -273,6 +289,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<RelayModel> call, Response<RelayModel> response) {
                 swSensor.setChecked(response.body().getSensor());
+
+
 
                 if(response.body().getSensor()){
                     relaySensorTrue();

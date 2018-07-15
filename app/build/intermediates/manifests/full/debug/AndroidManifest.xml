@@ -27,6 +27,10 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name="com.example.alirodhi.broiler.service.NotificationService"
+            android:enabled="true" />
+
         <meta-data
             android:name="android.support.VERSION"
             android:value="26.0.0" />

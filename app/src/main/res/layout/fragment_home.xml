@@ -89,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="27"
+                        android:text="..."
                         android:textColor="#434343"
                         android:textSize="35sp" />
 
@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="60"
+                        android:text="..."
                         android:textColor="#434343"
                         android:textSize="35sp" />
 
@@ -212,7 +212,7 @@
                         android:layout_gravity="center_vertical"
                         android:textColor="#434343"
                         android:paddingLeft="5dp"
-                        android:text="350"
+                        android:text="..."
                         android:textSize="30sp" />
 
                     <TextView
@@ -272,7 +272,7 @@
                         android:id="@+id/txtAmmonia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3"
+                        android:text="..."
                         android:textColor="#434343"
                         android:textSize="30sp"
                         android:paddingLeft="8dp"

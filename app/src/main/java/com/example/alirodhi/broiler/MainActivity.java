@@ -1,5 +1,6 @@
 package com.example.alirodhi.broiler;
 
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import com.example.alirodhi.broiler.fragment.HomeFragment;
 import com.example.alirodhi.broiler.fragment.LogFragment;
 import com.example.alirodhi.broiler.fragment.LogRelayFragment;
 import com.example.alirodhi.broiler.fragment.RemoteFragment;
+import com.example.alirodhi.broiler.service.NotificationService;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.roughike.bottombar.BottomBar;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
 
     //public DatabaseHelper db;
+
+    private Intent intent;
 
     private BottomBar bottomBar;
     private Fragment fragment = null;
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //db = new DatabaseHelper(this);
+        intent = new Intent(this, NotificationService.class);
 
         //Connect to socket server
         sc.connect();
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new HomeFragment();
                 } else if(tabId == R.id.tab_remote){
                     fragment = new RemoteFragment();
+                    //startService(intent);
                 } else if(tabId == R.id.tab_log){
                     fragment = new LogFragment();
                 }
