@@ -20,8 +20,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.NotificationService"
-            android:enabled="true"/>
+        <service android:name=".service.NotificationService"/>
 
     </application>
 

@@ -1,17 +1,17 @@
 #Internal package file, do not edit.
-#Sat Jul 14 12:44:06 ICT 2018
-2.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\15
+#Mon Jul 16 21:00:44 ICT 2018
+2.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
 5.set=DEX
 0.path=classes.dex
 2.baseType=DIRECTORY
-3.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
+3.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\15
 2.set=DEX
 1.path=classes.dex
-4.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
+4.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
 count=6
 5.baseType=DIRECTORY
 2.path=classes.dex
-5.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\11
+5.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
 4.set=DEX
 3.path=classes.dex
 3.baseType=DIRECTORY
@@ -22,6 +22,6 @@ count=6
 0.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\16
 0.baseType=DIRECTORY
 3.set=DEX
-1.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+1.base=D\:\\rodhi\\Kerjoan\\Android\\TUGAS_AKHIR\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\17
 4.baseType=DIRECTORY
 0.set=DEX

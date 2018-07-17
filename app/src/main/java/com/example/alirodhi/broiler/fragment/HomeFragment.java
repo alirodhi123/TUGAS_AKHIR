@@ -6,7 +6,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alirodhi.broiler.API.ServiceAPI;
+import com.example.alirodhi.broiler.MainActivity;
 import com.example.alirodhi.broiler.Models.RelayModel;
 import com.example.alirodhi.broiler.Models.ResponseSensorModel;
 import com.example.alirodhi.broiler.Models.SensorModel;
@@ -61,6 +66,7 @@ public class HomeFragment extends Fragment {
     private DatabaseHelper db;
 
     private NotificationManager mgr;
+    private Notification notification;
 
     private SharedPreferences historyPref;
     private SharedPreferences.Editor historyEdit;
@@ -92,6 +98,14 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            getSensorData();
+        }
+    };
+
     public HomeFragment() {}
 
     @Override
@@ -119,7 +133,7 @@ public class HomeFragment extends Fragment {
         sc.connect();
 
         // Database connect
-        db = new DatabaseHelper(getContext());
+        //db = new DatabaseHelper(getContext());
 
         //serviceIntent = new Intent(getActivity(), NotificationService.class);
 
@@ -154,10 +168,36 @@ public class HomeFragment extends Fragment {
         });
 //
 //        updateSensorData();
-        getDataSensor();
+//        getDataSensor();
+        updateSensorData();
         getStateRelay();
 
         return view;
+    }
+
+    private void displaySensorData(){
+        txtTemp.setText(String.valueOf(historyPref.getFloat(LAST_TEMP, 0)));
+        txtHum.setText(String.valueOf(historyPref.getFloat(LAST_HUM, 0)));
+        txtCdioksida.setText(String.valueOf(historyPref.getFloat(LAST_CO2, 0)));
+        txtAmmonia.setText(String.valueOf(historyPref.getFloat(LAST_NH3, 0)));
+    }
+
+    private void getSensorData() {
+        txtTemp.setText(String.valueOf(historyPref.getFloat(LAST_TEMP, 0)));
+        txtHum.setText(String.valueOf(historyPref.getFloat(LAST_HUM, 0)));
+        txtCdioksida.setText(String.valueOf(historyPref.getFloat(LAST_CO2, 0)));
+        txtAmmonia.setText(String.valueOf(historyPref.getFloat(LAST_NH3, 0)));
+
+        handler.postDelayed(runnable, 20000);
+    }
+
+    private void updateSensorData() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getSensorData();
+            }
+        });
     }
 
     /**
@@ -165,92 +205,91 @@ public class HomeFragment extends Fragment {
      * Function to get all data sensor from waspmote
      * Use UI THREAD for looping
      */
-    private void loadDataCoy () {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
-        Call<ResponseSensorModel> call = serviceAPI.getDataSensor();
-        call.enqueue(new Callback<ResponseSensorModel>() {
-            @Override
-            public void onResponse(Call<ResponseSensorModel> call, Response<ResponseSensorModel> response) {
-                String value = response.body().getStatus();
-                if (value.equals("success")){
-                    sensorModels = response.body().getData();
-                    SensorModel lastData = sensorModels.get(sensorModels.size() - 1);
-
-                    //int tempInt = Integer.parseInt(lastData.getTemp().toString());
-
-                    String temp = String.format("%.1f", lastData.getTemp());
-                    String hum = String.format("%.1f", lastData.getHum());
-                    String dioksida = String.format("%.1f", lastData.getCdioksida());
-                    String ammonia = String.format("%.3f", lastData.getAmonia());
-
-                    // Show your value to app in string mode
-                    txtTemp.setText(temp);
-                    txtHum.setText(hum);
-                    txtCdioksida.setText(dioksida);
-                    txtAmmonia.setText(ammonia);
-
-                    float tempVal = Float.parseFloat(temp);
-                    float humVal = Float.parseFloat(hum);
-                    float cdioksidaVal = Float.parseFloat(dioksida);
-                    float ammoniaVal = Float.parseFloat(ammonia);
-
-                    float lastTemp = historyPref.getFloat(LAST_TEMP, 0);
-                    float lastHum = historyPref.getFloat(LAST_HUM, 0);
-                    float lastCdioksida = historyPref.getFloat(LAST_CO2, 0);
-                    float lastAmmonia = historyPref.getFloat(LAST_NH3, 0);
-
-                    // Your condition, what you want save in database SQL
-                    if ( (tempVal < 27 || tempVal > 32) && (humVal < 60 || humVal > 70) )
-                    {
-                        // Create Notification
-                        mgr = (NotificationManager)getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
-                        Notification notification = new NotificationCompat.Builder(getContext(), "exampleServiceChannel")
-                                .setContentTitle("Sensor Gases")
-                                .setContentText("WARNING! Please check the air condition")
-                                .setSmallIcon(R.mipmap.ic_launcher)
-                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                .setAutoCancel(true)
-                                .setDefaults(Notification.DEFAULT_ALL)
-                                .build();
-
-                        mgr.notify(1, notification);
-
-                    } else {
-                        if ( (tempVal != lastTemp) ||
-                                (humVal != lastHum) ||
-                                (cdioksidaVal != lastCdioksida) ||
-                                (ammoniaVal != lastAmmonia) )
-                        {
-                            // Data push in database
-                            historyEdit.putFloat(LAST_TEMP, tempVal);
-                            historyEdit.putFloat(LAST_HUM, humVal);
-                            historyEdit.putFloat(LAST_CO2, cdioksidaVal);
-                            historyEdit.putFloat(LAST_NH3, ammoniaVal);
-                            historyEdit.apply();
-
-                            db.insertHistory(temp, hum, dioksida, ammonia);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseSensorModel> call, Throwable t) {
-
-            }
-        });
-    }
-
-    /**
-     * UI THREAD
-     * Get data sensor with delay 6 second
-     * Output: Looping every 6 s
-     */
+//    private void loadDataCoy () {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        final ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
+//        Call<ResponseSensorModel> call = serviceAPI.getDataSensor();
+//        call.enqueue(new Callback<ResponseSensorModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseSensorModel> call, Response<ResponseSensorModel> response) {
+//                String value = response.body().getStatus();
+//                if (value.equals("success")){
+//                    sensorModels = response.body().getData();
+//                    SensorModel lastData = sensorModels.get(sensorModels.size() - 1);
+//
+//                    //int tempInt = Integer.parseInt(lastData.getTemp().toString());
+//
+//                    String temp = String.format("%.1f", lastData.getTemp());
+//                    String hum = String.format("%.1f", lastData.getHum());
+//                    String dioksida = String.format("%.1f", lastData.getCdioksida());
+//                    String ammonia = String.format("%.3f", lastData.getAmonia());
+//
+//                    // Show your value to app in string mode
+//                    txtTemp.setText(temp);
+//                    txtHum.setText(hum);
+//                    txtCdioksida.setText(dioksida);
+//                    txtAmmonia.setText(ammonia);
+//
+//                    float tempVal = Float.parseFloat(temp);
+//                    float humVal = Float.parseFloat(hum);
+//                    float cdioksidaVal = Float.parseFloat(dioksida);
+//                    float ammoniaVal = Float.parseFloat(ammonia);
+//
+//                    float lastTemp = historyPref.getFloat(LAST_TEMP, 0);
+//                    float lastHum = historyPref.getFloat(LAST_HUM, 0);
+//                    float lastCdioksida = historyPref.getFloat(LAST_CO2, 0);
+//                    float lastAmmonia = historyPref.getFloat(LAST_NH3, 0);
+//
+//                    // Your condition, what you want save in database SQL
+//                    if ( (tempVal < 27 || tempVal > 32) && (humVal < 60 || humVal > 70) )
+//                    {
+//                        // Create Notification
+//                        mgr = (NotificationManager)getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
+//                        NotificationCompat.Builder note = new NotificationCompat.Builder(getContext(), "exampleServiceChannel");
+//                                note.setContentTitle("Sensor Gases");
+//                                note.setContentText("WARNING! Please check the air condition");
+//                                note.setSmallIcon(R.mipmap.ic_launcher);
+//                                note.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+//                                note.setAutoCancel(true);
+//                                note.setDefaults(Notification.DEFAULT_ALL);
+//
+//                        mgr.notify(1, note.build());
+//
+//                    } else {
+//                        if ( (tempVal != lastTemp) ||
+//                                (humVal != lastHum) ||
+//                                (cdioksidaVal != lastCdioksida) ||
+//                                (ammoniaVal != lastAmmonia) )
+//                        {
+//                            // Data push in database
+//                            historyEdit.putFloat(LAST_TEMP, tempVal);
+//                            historyEdit.putFloat(LAST_HUM, humVal);
+//                            historyEdit.putFloat(LAST_CO2, cdioksidaVal);
+//                            historyEdit.putFloat(LAST_NH3, ammoniaVal);
+//                            historyEdit.apply();
+//
+//                            db.insertHistory(temp, hum, dioksida, ammonia);
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseSensorModel> call, Throwable t) {
+//
+//            }
+//        });
+//    }
+//
+//    /**
+//     * UI THREAD
+//     * Get data sensor with delay 6 second
+//     * Output: Looping every 6 s
+//     */
     private void getDataSensor(){
 
         final Thread thread = new Thread(){
@@ -267,16 +306,16 @@ public class HomeFragment extends Fragment {
         thread.start();
 
         if (thread.getId() % 2 == 0) {
-            loadDataCoy();
+            displaySensorData();
         }
     }
 
 
-    /**
-     * RETROFIT
-     * Get state relay sensor
-     * Output: call last relay sensor true or false
-     */
+//    /**
+//     * RETROFIT
+//     * Get state relay sensor
+//     * Output: call last relay sensor true or false
+//     */
     private void getStateRelay(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -339,5 +378,4 @@ public class HomeFragment extends Fragment {
 
         }
     };
-
 }

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
+ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
 MERGED from [com.roughike:bottom-bar:2.3.1] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\bottom-bar-2.3.1.aar\7376c50d009468f2c75f0399db8514b9\AndroidManifest.xml:2:1-12:12
 MERGED from [com.android.support:design:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\7ec707aac6b53f4038ec430586c474d4\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\7cdfa0f42f7896647ae3811fed9b5230\AndroidManifest.xml:17:1-31:12
@@ -20,20 +20,20 @@ MERGED from [com.android.support:support-media-compat:26.0.0] C:\Users\alirodhi\
 MERGED from [com.android.support:support-core-utils:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.0.0.aar\fd3da02f8bcf0496784a5af35dd4c327\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\support-compat-26.0.0.aar\9e18a7924082bc1ec41eb9d794061fd1\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:multidex:1.0.1] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\multidex-1.0.1.aar\4a9497c2322d48bd89f91ebe949cdff2\AndroidManifest.xml:16:1-19:12
-INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:3:5-43
 		INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 		INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
-		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
+		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
 		INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
-		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-28:12
+		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:1-27:12
 		INJECTED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:2:11-69
@@ -42,7 +42,7 @@ ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 	android:name
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:7:5-26:19
+ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:7:5-25:19
 MERGED from [com.android.support:design:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\7ec707aac6b53f4038ec430586c474d4\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:design:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\design-26.0.0.aar\7ec707aac6b53f4038ec430586c474d4\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.0.0] C:\Users\alirodhi\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.0.0.aar\7cdfa0f42f7896647ae3811fed9b5230\AndroidManifest.xml:25:5-29:19
@@ -98,9 +98,7 @@ ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml
 	android:name
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:19:27-74
 service#com.example.alirodhi.broiler.service.NotificationService
-ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:23:9-24:37
-	android:enabled
-		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:24:13-35
+ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:23:9-63
 	android:name
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:23:18-61
 uses-sdk
