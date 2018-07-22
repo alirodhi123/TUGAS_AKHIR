@@ -32,7 +32,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/broder_launcher" />
 
             <LinearLayout
                 android:layout_width="match_parent"

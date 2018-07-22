@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
                     historyEdit.putFloat(LAST_NH3, ammoniaVal);
                     historyEdit.apply();
 
-                    if ((tempVal >= 27 && tempVal <= 32) && (humVal >= 60 && humVal <= 70)){
+                    if ((tempVal >= 32 && tempVal <= 34) && (humVal >= 50 && humVal <= 70)){
                         //Kondisi normal
                         Log.i("data", "kondisi normal");
 
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("data", "data dari waspmote tidak di push");
                     }
 
-                    if ((tempVal < 27 || tempVal > 32) && (humVal < 60 || humVal > 70)){
+                    if ((tempVal < 30 || tempVal > 34) && (humVal < 50 || humVal > 70)){
                         // Create Notification
                         startService(serviceIntent);
                     }

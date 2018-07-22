@@ -72,9 +72,6 @@ public class HistorySensorAdapter extends RecyclerView.Adapter<HistorySensorAdap
         String[] dates = date.split(" ");
         holder.tvTanggal.setText(dates[0]+" "+ dates[1]+" "+ dates[2]+" "+dates[3]);
         holder.tvJam.setText(dates[4]);
-
-        //Cara wahyu ade sasongko
-        //holder.tvTanggal.setText(DateParser.parseDateToDayDateMonthYear(histories.get(position).getTimestamp()));
     }
 
     @Override

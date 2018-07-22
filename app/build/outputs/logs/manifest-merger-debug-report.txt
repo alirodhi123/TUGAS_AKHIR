@@ -76,7 +76,7 @@ MERGED from [com.android.support:support-compat:26.0.0] C:\Users\alirodhi\.gradl
 	android:label
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:10:9-41
 	android:roundIcon
-		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:11:9-52
 	android:icon
 		ADDED from D:\rodhi\Kerjoan\Android\TUGAS_AKHIR\app\src\main\AndroidManifest.xml:9:9-47
 	android:allowBackup
