@@ -79,14 +79,11 @@ public class HomeFragment extends Fragment {
     private TextView txtAmmonia;
     private TextView txtView;
     private Switch swSensor;
+    private Switch swOtomatis;
 
     private int currTime;
     private boolean firstEnterRecursive = true;
 
-    private float tempCache = 0.0f;
-    private float humCache = 0.0f;
-    private float cdioksidaCache = 0.0f;
-    private float ammoniaCache = 0.0f;
 
     private Socket sc;
     {
@@ -120,6 +117,7 @@ public class HomeFragment extends Fragment {
         txtAmmonia = (TextView)view.findViewById(R.id.txtAmmonia);
         txtView = (TextView)view.findViewById(R.id.tanggal);
         swSensor = (Switch)view.findViewById(R.id.switchBtnSensor);
+        swOtomatis = (Switch)view.findViewById(R.id.switchBtnOtomatis);
 
         historyPref = getContext().getSharedPreferences(HISTORY_PREF, Context.MODE_PRIVATE);
         historyEdit = historyPref.edit();
@@ -130,12 +128,8 @@ public class HomeFragment extends Fragment {
 
         // Connect to socket io
         sc.on("readsensor", getReadserial);
+        sc.on("otomatis", getOtomatis);
         sc.connect();
-
-        // Database connect
-        //db = new DatabaseHelper(getContext());
-
-        //serviceIntent = new Intent(getActivity(), NotificationService.class);
 
         /**
          * SOCKET IO
@@ -166,6 +160,36 @@ public class HomeFragment extends Fragment {
                 sc.emit("readsensor", sensor);
             }
         });
+
+        /**
+         * SOCKET IO
+         * Function to execute toggle automation
+         */
+        swOtomatis = (Switch) view.findViewById(R.id.switchBtnOtomatis);
+        swOtomatis.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                JSONObject sensor = new JSONObject();
+                if (isChecked){
+                    try{
+                        sensor.put("status", true);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                    //toggleButtonLamp.setText("ON");
+                    //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
+                } else {
+                    try{
+                        sensor.put("status", false);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                    //toggleButtonLamp.setText("OFF");
+                    //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
+                }
+                sc.emit("otomatis", sensor);
+            }
+        });
 //
 //        updateSensorData();
 //        getDataSensor();
@@ -188,7 +212,7 @@ public class HomeFragment extends Fragment {
         txtCdioksida.setText(String.valueOf(historyPref.getFloat(LAST_CO2, 0)));
         txtAmmonia.setText(String.valueOf(historyPref.getFloat(LAST_NH3, 0)));
 
-        handler.postDelayed(runnable, 20000);
+        handler.postDelayed(runnable, 5000);
     }
 
     private void updateSensorData() {
@@ -200,116 +224,30 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    /**
-     * RETROFIT
-     * Function to get all data sensor from waspmote
-     * Use UI THREAD for looping
-     */
-//    private void loadDataCoy () {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        final ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
-//        Call<ResponseSensorModel> call = serviceAPI.getDataSensor();
-//        call.enqueue(new Callback<ResponseSensorModel>() {
-//            @Override
-//            public void onResponse(Call<ResponseSensorModel> call, Response<ResponseSensorModel> response) {
-//                String value = response.body().getStatus();
-//                if (value.equals("success")){
-//                    sensorModels = response.body().getData();
-//                    SensorModel lastData = sensorModels.get(sensorModels.size() - 1);
-//
-//                    //int tempInt = Integer.parseInt(lastData.getTemp().toString());
-//
-//                    String temp = String.format("%.1f", lastData.getTemp());
-//                    String hum = String.format("%.1f", lastData.getHum());
-//                    String dioksida = String.format("%.1f", lastData.getCdioksida());
-//                    String ammonia = String.format("%.3f", lastData.getAmonia());
-//
-//                    // Show your value to app in string mode
-//                    txtTemp.setText(temp);
-//                    txtHum.setText(hum);
-//                    txtCdioksida.setText(dioksida);
-//                    txtAmmonia.setText(ammonia);
-//
-//                    float tempVal = Float.parseFloat(temp);
-//                    float humVal = Float.parseFloat(hum);
-//                    float cdioksidaVal = Float.parseFloat(dioksida);
-//                    float ammoniaVal = Float.parseFloat(ammonia);
-//
-//                    float lastTemp = historyPref.getFloat(LAST_TEMP, 0);
-//                    float lastHum = historyPref.getFloat(LAST_HUM, 0);
-//                    float lastCdioksida = historyPref.getFloat(LAST_CO2, 0);
-//                    float lastAmmonia = historyPref.getFloat(LAST_NH3, 0);
-//
-//                    // Your condition, what you want save in database SQL
-//                    if ( (tempVal < 27 || tempVal > 32) && (humVal < 60 || humVal > 70) )
-//                    {
-//                        // Create Notification
-//                        mgr = (NotificationManager)getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
-//                        NotificationCompat.Builder note = new NotificationCompat.Builder(getContext(), "exampleServiceChannel");
-//                                note.setContentTitle("Sensor Gases");
-//                                note.setContentText("WARNING! Please check the air condition");
-//                                note.setSmallIcon(R.mipmap.ic_launcher);
-//                                note.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-//                                note.setAutoCancel(true);
-//                                note.setDefaults(Notification.DEFAULT_ALL);
-//
-//                        mgr.notify(1, note.build());
-//
-//                    } else {
-//                        if ( (tempVal != lastTemp) ||
-//                                (humVal != lastHum) ||
-//                                (cdioksidaVal != lastCdioksida) ||
-//                                (ammoniaVal != lastAmmonia) )
-//                        {
-//                            // Data push in database
-//                            historyEdit.putFloat(LAST_TEMP, tempVal);
-//                            historyEdit.putFloat(LAST_HUM, humVal);
-//                            historyEdit.putFloat(LAST_CO2, cdioksidaVal);
-//                            historyEdit.putFloat(LAST_NH3, ammoniaVal);
-//                            historyEdit.apply();
-//
-//                            db.insertHistory(temp, hum, dioksida, ammonia);
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseSensorModel> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-//
 //    /**
 //     * UI THREAD
 //     * Get data sensor with delay 6 second
 //     * Output: Looping every 6 s
 //     */
-    private void getDataSensor(){
-
-        final Thread thread = new Thread(){
-            public void run(){
-                try{
-                    sleep(20000);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }finally {
-                    getDataSensor();
-                }
-            }
-        };
-        thread.start();
-
-        if (thread.getId() % 2 == 0) {
-            displaySensorData();
-        }
-    }
-
+//    private void getDataSensor(){
+//
+//        final Thread thread = new Thread(){
+//            public void run(){
+//                try{
+//                    sleep(20000);
+//                }catch (InterruptedException e){
+//                    e.printStackTrace();
+//                }finally {
+//                    getDataSensor();
+//                }
+//            }
+//        };
+//        thread.start();
+//
+//        if (thread.getId() % 2 == 0) {
+//            displaySensorData();
+//        }
+//    }
 
 //    /**
 //     * RETROFIT
@@ -328,14 +266,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<RelayModel> call, Response<RelayModel> response) {
                 swSensor.setChecked(response.body().getSensor());
-
-
-
-                if(response.body().getSensor()){
-                    relaySensorTrue();
-                }else{
-                    relaySensorFalse();
-                }
+                swOtomatis.setChecked(response.body().getOtomatis());
             }
 
             @Override
@@ -345,10 +276,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void relaySensorTrue() {
-    }
-    private void relaySensorFalse() {
-    }
 
     private Emitter.Listener getReadserial = new Emitter.Listener() {
         @Override
@@ -371,6 +298,35 @@ public class HomeFragment extends Fragment {
                         }
                         else{
                             swSensor.setChecked(false);
+                        }
+                    }
+                });
+            }
+
+        }
+    };
+
+    private Emitter.Listener getOtomatis = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            if(getActivity()!=null){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+                        String status;
+                        try{
+                            status = data.getString("status");
+                        }catch (JSONException e){
+                            return;
+                        }
+                        Log.e("Status otomatis: ", status);
+                        swOtomatis = (Switch) getActivity().findViewById(R.id.switchBtnOtomatis);
+                        if (status == "true"){
+                            swOtomatis.setChecked(true);
+                        }
+                        else{
+                            swOtomatis.setChecked(false);
                         }
                     }
                 });

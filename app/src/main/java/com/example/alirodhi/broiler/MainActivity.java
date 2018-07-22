@@ -127,32 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
         showFrament();
 
-//        swSensor = (Switch) findViewById(R.id.switchBtnSensor);
-//        swSensor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-//                JSONObject sensor = new JSONObject();
-//                if (isChecked){
-//                    try{
-//                        sensor.put("status", true);
-//                    }catch (JSONException e){
-//                        e.printStackTrace();
-//                    }
-//                    //toggleButtonLamp.setText("ON");
-//                    //Toast.makeText(getActivity(), "Toggle button spray is on", Toast.LENGTH_LONG).show();
-//                } else {
-//                    try{
-//                        sensor.put("status", false);
-//                    }catch (JSONException e){
-//                        e.printStackTrace();
-//                    }
-//                    //toggleButtonLamp.setText("OFF");
-//                    //Toast.makeText(getActivity(), "Toggle button spray is off", Toast.LENGTH_LONG).show();
-//                }
-//                sc.emit("readsensor", sensor);
-//            }
-//        });
-
         bottomBar = (BottomBar)findViewById(R.id.bottombar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -189,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getDataSensor();
-        //getStateRelay();
     }
 
     /**
@@ -214,18 +187,10 @@ public class MainActivity extends AppCompatActivity {
                     sensorModels = response.body();
                     SensorModel lastData = sensorModels.getData().get(sensorModels.getData().size() - 1);
 
-                    //int tempInt = Integer.parseInt(lastData.getTemp().toString());
-
                     String temp = String.format("%.1f", lastData.getTemp());
                     String hum = String.format("%.1f", lastData.getHum());
                     String dioksida = String.format("%.1f", lastData.getCdioksida());
                     String ammonia = String.format("%.3f", lastData.getAmonia());
-
-                    // Show your value to app in string mode
-//                    txtTemp.setText(temp);
-//                    txtHum.setText(hum);
-//                    txtCdioksida.setText(dioksida);
-//                    txtAmmonia.setText(ammonia);
 
                     float tempVal = Float.parseFloat(temp);
                     float humVal = Float.parseFloat(hum);
@@ -282,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
         final Thread thread = new Thread(){
             public void run(){
                 try{
-                    sleep(20000);
+                    sleep(5000);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
@@ -297,72 +262,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    /**
-     * RETROFIT
-     * Get state relay sensor
-     * Output: call last relay sensor true or false
-     */
-//    private void getStateRelay(){
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        ServiceAPI serviceAPI = retrofit.create(ServiceAPI.class);
-//        final Call<RelayModel> relayModel  = serviceAPI.getStateRelay();
-//        relayModel.enqueue(new Callback<RelayModel>() {
-//            @Override
-//            public void onResponse(Call<RelayModel> call, Response<RelayModel> response) {
-//                swSensor.setChecked(response.body().getSensor());
-//
-//                if(response.body().getSensor()){
-//                    relaySensorTrue();
-//                }else{
-//                    relaySensorFalse();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RelayModel> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-//
-//    private void relaySensorTrue() {
-//    }
-//    private void relaySensorFalse() {
-//    }
-//
-//    private Emitter.Listener getReadserial = new Emitter.Listener() {
-//        @Override
-//        public void call(final Object... args) {
-//            if(MainActivity.this!=null){
-//                MainActivity.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        JSONObject data = (JSONObject) args[0];
-//                        String status;
-//                        try{
-//                            status = data.getString("status");
-//                        }catch (JSONException e){
-//                            return;
-//                        }
-//                        Log.e("Status sensor: ", status);
-//                        swSensor = (Switch) MainActivity.this.findViewById(R.id.switchBtnSensor);
-//                        if (status == "true"){
-//                            swSensor.setChecked(true);
-//                        }
-//                        else{
-//                            swSensor.setChecked(false);
-//                        }
-//                    }
-//                });
-//            }
-//
-//        }
-//    };
 
     private void showFrament(){
         HomeFragment fragment = new HomeFragment();

@@ -13,6 +13,7 @@ public class RelayModel {
     private Boolean spray;
     private Boolean exhaust;
     private Boolean sensor;
+    private Boolean otomatis;
 
     public Boolean getLamp() {
         return lamp;
@@ -46,11 +47,13 @@ public class RelayModel {
         this.exhaust = exhaust;
     }
 
-    public Boolean getSensor() {
-        return sensor;
-    }
+    public Boolean getSensor() {return sensor;}
 
     public void setSensor(Boolean sensor) {
         this.sensor = sensor;
     }
+
+    public Boolean getOtomatis() {return otomatis;}
+
+    public void setOtomatis(Boolean otomatis) {this.otomatis = otomatis;}
 }

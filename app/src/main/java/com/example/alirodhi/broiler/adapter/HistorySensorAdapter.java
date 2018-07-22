@@ -57,7 +57,7 @@ public class HistorySensorAdapter extends RecyclerView.Adapter<HistorySensorAdap
         float ammoniaVal = Float.parseFloat(historySensorModel.getAmmonia());
 
         if (tempVal < 29 || humVal < 60 || cdioksidaVal < 350 || ammoniaVal < 0 ){
-            holder.tvJudul.setText("Air is Low");
+            holder.tvJudul.setText("Sensor Gases");
         } else if (
                 (tempVal >= 29 && tempVal <= 32) ||
                 (humVal >= 60 && humVal <= 70) ||
